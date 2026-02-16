@@ -3,43 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Always-Running AI Scribe</title>
+    <title>AI Meeting Scribe Pro</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #f8fafc; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .app-card { width: 90%; max-width: 850px; background: #1e293b; padding: 2rem; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid #334155; }
-        #display-area { background: #020617; border-radius: 16px; padding: 25px; height: 450px; overflow-y: auto; font-size: 1.3rem; line-height: 1.7; border: 1px solid #1e293b; margin: 20px 0; scroll-behavior: smooth; }
-        .interim { color: #64748b; font-style: italic; }
-        .controls { display: flex; gap: 15px; justify-content: center; }
-        button { padding: 16px 40px; font-size: 1.1rem; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; transition: 0.2s; }
-        .btn-start { background: #22c55e; color: white; }
-        .btn-stop { background: #ef4444; color: white; }
-        button:disabled { opacity: 0.3; cursor: not-allowed; }
-        .live-indicator { display: inline-block; width: 10px; height: 10px; background: #ef4444; border-radius: 50%; margin-right: 10px; animation: blink 1s infinite; display: none; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .app-container { width: 100%; max-width: 1000px; background: #1e293b; border-radius: 20px; padding: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 20px; }
+        #transcript-box { background: #020617; border-radius: 12px; padding: 25px; height: 500px; overflow-y: auto; font-size: 1.15rem; line-height: 1.8; border: 1px solid #334155; }
+        .note-entry { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dotted #334155; animation: fadeIn 0.3s ease; }
+        .timestamp { font-family: monospace; color: #6366f1; font-weight: bold; font-size: 0.85rem; margin-right: 12px; background: #1e293b; padding: 2px 8px; border-radius: 4px; }
+        .interim { color: #94a3b8; font-style: italic; }
+        .controls { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .start { background: #10b981; color: white; }
+        .stop { background: #ef4444; color: white; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<div class="app-card">
-    <h2 style="margin:0;"><span id="dot" class="live-indicator"></span>Always-Running English Scribe</h2>
-    <div id="display-area">Waiting for you to start...</div>
-    <div class="controls">
-        <button id="startBtn" class="btn-start">Start Infinite Mode</button>
-        <button id="stopBtn" class="btn-stop" disabled>Stop</button>
+<div class="app-container">
+    <div class="header">
+        <h2 style="margin:0;">Meeting Scribe Pro</h2> <h2 style="margin:0;"><a href="index.html">speach2text</a></h2>speechtotext
+        <div id="recording-status" style="color: #94a3b8;">● Standby</div>
+		
     </div>
-    <p id="statusInfo" style="text-align:center; color: #64748b; font-size: 0.9rem;">Mode: Standby</p>
+
+    <div id="transcript-box">abhi</div>
+
+    <div class="controls">
+        <button class="start" id="startBtn">Start Session</button>
+        <button class="stop" id="stopBtn" disabled>Stop</button>
+        <button style="background: #334155; color: white;" onclick="clearTranscript()">Clear</button>
+    </div>
+	 <div>
+	<footer style="text-align: center; padding:1px; background-color: #334155; margin-top: 1px;">
+    <p>Developed by Abhishek</p>
+</footer>
+</div>
 </div>
 
 <script>
+    const transcriptBox = document.getElementById('transcript-box');
     const startBtn = document.getElementById('startBtn');
     const stopBtn = document.getElementById('stopBtn');
-    const display = document.getElementById('display-area');
-    const statusInfo = document.getElementById('statusInfo');
-    const dot = document.getElementById('dot');
+    const status = document.getElementById('recording-status');
 
-    let isRecording = false;
-    let finalText = "";
-    
+    let isRunning = false;
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
@@ -47,67 +56,88 @@
     recognition.interimResults = true;
     recognition.lang = 'en-US';
 
-    // 1. Process Results
+    // Speed Optimization: Reducing the "thinking" time of the browser
+    // Note: Some browsers don't support maxAlternatives, but it helps if they do.
+    recognition.maxAlternatives = 1;
+
     recognition.onresult = (event) => {
-        let interimText = "";
+        let interimTranscript = '';
+        
         for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-                finalText += event.results[i][0].transcript + " ";
+            const result = event.results[i];
+            const text = result[0].transcript;
+            
+            if (result.isFinal) {
+                appendFinalEntry(text);
             } else {
-                interimText += event.results[i][0].transcript;
+                interimTranscript += text;
             }
         }
-        display.innerHTML = `<span>${finalText}</span><span class="interim">${interimText}</span>`;
-        display.scrollTop = display.scrollHeight;
+        updateInterimDisplay(interimTranscript);
     };
 
-    // 2. THE SECRET SAUCE: The Auto-Restarter
-    recognition.onend = () => {
-        if (isRecording) {
-            console.log("Detecting accidental stop... restarting now.");
-            recognition.start(); // Force restart immediately
-        }
-    };
+    function appendFinalEntry(text) {
+        // 1. Auto-Punctuation (Capitalization & Period)
+        let formattedText = text.trim();
+        formattedText = formattedText.charAt(0).toUpperCase() + formattedText.slice(1);
+        
+        // Add full stop if not present
+        if (!/[.!?]$/.test(formattedText)) formattedText += '.';
 
-    // 3. Heartbeat Check (Every 2 seconds, ensure it hasn't crashed)
-    setInterval(() => {
-        if (isRecording) {
-            try {
-                recognition.start(); 
-            } catch (e) {
-                // Throws error if already running, which is good! 
-                // It means it's still alive.
-            }
+        // 2. Get Timestamp
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                        now.getMinutes().toString().padStart(2, '0') + ":" + 
+                        now.getSeconds().toString().padStart(2, '0');
+
+        // 3. Create Element
+        const div = document.createElement('div');
+        div.className = 'note-entry';
+        div.innerHTML = `<span class="timestamp">[${timeStr}]</span><span class="text">${formattedText}</span>`;
+        
+        // Remove old interim and add final
+        const interimSpan = document.getElementById('interim-span');
+        if (interimSpan) interimSpan.remove();
+        
+        transcriptBox.appendChild(div);
+        transcriptBox.scrollTop = transcriptBox.scrollHeight;
+    }
+
+    function updateInterimDisplay(text) {
+        let interimSpan = document.getElementById('interim-span');
+        if (!interimSpan) {
+            interimSpan = document.createElement('span');
+            interimSpan.id = 'interim-span';
+            interimSpan.className = 'interim';
+            transcriptBox.appendChild(interimSpan);
         }
-    }, 2000);
+        interimSpan.innerText = text;
+        transcriptBox.scrollTop = transcriptBox.scrollHeight;
+    }
+
+    recognition.onend = () => { if (isRunning) recognition.start(); };
 
     startBtn.onclick = () => {
-        isRecording = true;
-        finalText = "";
-        display.innerHTML = "";
+        isRunning = true;
         recognition.start();
-        
         startBtn.disabled = true;
         stopBtn.disabled = false;
-        dot.style.display = "inline-block";
-        statusInfo.innerText = "Mode: ALWAYS RUNNING (Listening...)";
+        status.innerText = "● Recording Live";
+        status.style.color = "#ef4444";
     };
 
     stopBtn.onclick = () => {
-        isRecording = false;
+        isRunning = false;
         recognition.stop();
         startBtn.disabled = false;
         stopBtn.disabled = true;
-        dot.style.display = "none";
-        statusInfo.innerText = "Mode: Stopped";
+        status.innerText = "● Standby";
+        status.style.color = "#94a3b8";
     };
 
-    recognition.onerror = (err) => {
-        console.error("Speech Error:", err.error);
-        if (err.error === 'no-speech' && isRecording) {
-            // Keep going even if no one is talking
-        }
-    };
+    function clearTranscript() { transcriptBox.innerHTML = ''; }
 </script>
+
 </body>
+
 </html>
