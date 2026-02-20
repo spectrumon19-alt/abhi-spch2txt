@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhi Grammar Exam</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f9;
+}
+header{
+  position:sticky;
+  top:0;
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+.container{
+  max-width:900px;
+  margin:20px auto;
+  padding:10px;
+}
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+.options label{
+  display:block;
+  padding:8px;
+  margin:5px 0;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.options label:hover{
+  background:#eef2ff;
+}
+.correct{ background:#d4edda !important; }
+.wrong{ background:#f8d7da !important; }
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin:10px 5px;
+}
+.submit-btn{ background:#16a34a; color:white; }
+.reset-btn{ background:#dc2626; color:white; }
+#result{
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:15px;
+}
+.timer{ font-weight:bold; color:#facc15; }
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Abhi Grammar Online Exam </h2>
+<div class="timer">Time Left: <span id="time">20:00</span></div>
+</header>
+
+<div class="container">
+<div id="result"></div>
+<div id="exam"></div>
+<button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+<button class="reset-btn" onclick="location.reload()">Retake</button>
+</div>
+
+<script>
+
+const questions=[];
+
+// ---------- Section A (25 Replace with Dash) ----------
+const replaceQuestions=[
+["She is suffering from ___ fever.",["a","an","the","no article"],0],
+["They are waiting ___ the entrance.",["in","at","on","to"],1],
+["I will return ___ 10 minutes.",["at","on","in","by"],2],
+["He lives ___ Delhi.",["at","in","on","to"],1],
+["The book is ___ the table.",["in","at","on","under"],2],
+["She arrived ___ the station.",["to","at","in","on"],1],
+["He apologized ___ his mistake.",["for","of","about","to"],0],
+["She is good ___ English.",["in","on","at","for"],2],
+["He insisted ___ paying.",["to","on","in","for"],1],
+["I am interested ___ music.",["on","for","in","at"],2],
+["She is afraid ___ dogs.",["from","of","about","with"],1],
+["He is proud ___ his son.",["for","of","at","on"],1],
+["The meeting is ___ Monday.",["in","on","at","by"],1],
+["She was born ___ 2005.",["on","at","in","by"],2],
+["He depends ___ his parents.",["in","on","at","with"],1],
+["She is married ___ a doctor.",["with","to","at","by"],1],
+["He is fond ___ cricket.",["in","of","at","for"],1],
+["She smiled ___ me.",["to","at","for","with"],1],
+["He divided cake ___ two parts.",["in","into","to","for"],1],
+["She prefers tea ___ coffee.",["than","to","over","with"],1],
+["The train arrived ___ time.",["in","at","on","by"],2],
+["He succeeded ___ passing.",["to","in","at","for"],1],
+["She complained ___ noise.",["for","about","to","at"],1],
+["He believes ___ hard work.",["in","on","at","to"],0],
+["I agree ___ you.",["to","with","on","for"],1]
+];
+
+replaceQuestions.forEach(q=>{
+  questions.push({section:"Section A: Replace with Dash",q:q[0],options:q[1],answer:q[2]});
+});
+
+// ---------- Section B (25 Correct Sentence) ----------
+const correctQuestions=[
+["She don't like coffee.",["She don't like coffee.","She doesn't like coffee.","She doesn't likes coffee.","She not like coffee."],1],
+["He have completed work.",["He have completed work.","He has completed work.","He having completed work.","He had complete work."],1],
+["Did he wrote test?",["Did he wrote test?","Did he write test?","He did wrote test?","Did he written test?"],1],
+["The book is in the table.",["The book is in the table.","The book is on the table.","The book is at table.","The book is over table."],1],
+["Between you and she.",["Between you and she.","Between you and her.","Between her and you.","Between you and hers."],1],
+["They was waiting.",["They was waiting.","They were waiting.","They are waiting.","They be waiting."],1],
+["He depend on father.",["He depend on father.","He depends on father.","He depended on father.","He depending on father."],1],
+["She is married with doctor.",["She is married with doctor.","She is married to doctor.","She married to doctor.","She is marry with doctor."],1],
+["I will return at 5 minutes.",["I will return at 5 minutes.","I will return in 5 minutes.","I will return on 5 minutes.","I return at 5 minutes."],1],
+["He is good in maths.",["He is good in maths.","He is good at maths.","He is good on maths.","He good at maths."],1],
+["She arrived to airport.",["She arrived to airport.","She arrived at airport.","She arrived in airport.","She arrived on airport."],1],
+["He apologized of mistake.",["He apologized of mistake.","He apologized for mistake.","He apologized to mistake.","He apologize for mistake."],1],
+["Meeting is in Monday.",["Meeting is in Monday.","Meeting is on Monday.","Meeting is at Monday.","Meeting Monday."],1],
+["She was born on 2000.",["She was born on 2000.","She was born in 2000.","She born in 2000.","She was born at 2000."],1],
+["He insisted to pay.",["He insisted to pay.","He insisted on paying.","He insist on pay.","He insisted paying."],1],
+["She is afraid from dog.",["She is afraid from dog.","She is afraid of dog.","She afraid of dog.","She is afraid by dog."],1],
+["I am interesting in music.",["I am interesting in music.","I am interested in music.","I interested in music.","I am interest in music."],1],
+["He borrowed money to me.",["He borrowed money to me.","He borrowed money from me.","He borrowed money me.","He borrowed from money me."],1],
+["Train arrived in time.",["Train arrived in time.","Train arrived on time.","Train arrived at time.","Train arrived by time."],1],
+["She congratulated him for success.",["She congratulated him for success.","She congratulated him on success.","She congratulated him at success.","She congratulated him success."],1],
+["He is tired from work.",["He is tired from work.","He is tired of work.","He tired of work.","He tired from work."],1],
+["She is capable to do this.",["She is capable to do this.","She is capable of doing this.","She capable of doing this.","She capable to do this."],1],
+["He proud of son.",["He proud of son.","He is proud of son.","He proud for son.","He is proud for son."],1],
+["She different from sister.",["She different from sister.","She is different from sister.","She different than sister.","She is different than sister."],1],
+["I will be back at 10 minutes.",["I will be back at 10 minutes.","I will be back in 10 minutes.","I will back in 10 minutes.","I back at 10 minutes."],1]
+];
+
+correctQuestions.forEach(q=>{
+  questions.push({section:"Section B: Correct Sentence",q:q[0],options:q[1],answer:q[2]});
+});
+
+// ---------- Render ----------
+const examDiv=document.getElementById("exam");
+let currentSection="";
+
+questions.forEach((q,i)=>{
+  if(q.section!==currentSection){
+    currentSection=q.section;
+    examDiv.innerHTML+=`<h3>${currentSection}</h3>`;
+  }
+  examDiv.innerHTML+=`
+  <div class="card">
+  <p><b>Q${i+1}.</b> ${q.q}</p>
+  <div class="options">
+  ${q.options.map((opt,index)=>
+  `<label><input type="radio" name="q${i}" value="${index}"> ${opt}</label>`
+  ).join("")}
+  </div>
+  <div id="answer${i}"></div>
+  </div>`;
+});
+
+// ---------- Submit ----------
+function submitExam(){
+  let score=0;
+  questions.forEach((q,i)=>{
+    const selected=document.querySelector(`input[name="q${i}"]:checked`);
+    const labels=document.querySelectorAll(`input[name="q${i}"]`);
+    labels.forEach(l=>l.disabled=true);
+
+    if(selected && parseInt(selected.value)===q.answer){
+      score++;
+      selected.parentElement.classList.add("correct");
+    }else if(selected){
+      selected.parentElement.classList.add("wrong");
+    }
+
+    labels[q.answer].parentElement.classList.add("correct");
+    document.getElementById("answer"+i).innerHTML=
+    `<p><b>Correct Answer:</b> ${q.options[q.answer]}</p>`;
+  });
+
+  let percent=Math.round((score/questions.length)*100);
+  let msg=percent>=90?"Excellent! 🌟":percent>=70?"Good Job 👍":"Keep Practicing 💪";
+
+  document.getElementById("result").innerHTML=
+  `Score: ${score}/50 (${percent}%) — ${msg}`;
+}
+
+// ---------- Timer ----------
+let totalTime=1200;
+const timer=document.getElementById("time");
+const countdown=setInterval(()=>{
+  let m=Math.floor(totalTime/60);
+  let s=totalTime%60;
+  timer.textContent=`${m}:${s<10?'0'+s:s}`;
+  totalTime--;
+  if(totalTime<0){
+    clearInterval(countdown);
+    submitExam();
+  }
+},1000);
+
+</script>
+</body>
+</html>
