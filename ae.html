@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abhi Grammar Exam</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abhi Grammar Online test</title>
 
 <style>
 body{
@@ -18,9 +18,10 @@ header{
   color:white;
   padding:15px;
   text-align:center;
+  z-index:10;
 }
 .container{
-  max-width:900px;
+  max-width:950px;
   margin:20px auto;
   padding:10px;
 }
@@ -31,19 +32,39 @@ header{
   border-radius:10px;
   box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
-.options label{
-  display:block;
-  padding:8px;
-  margin:5px 0;
-  border-radius:6px;
-  cursor:pointer;
-  transition:0.3s;
+.blank-input{
+  width: 420px;
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #cbd5e1;
+  outline: none;
+  font-size: 15px;
 }
-.options label:hover{
-  background:#eef2ff;
+.blank-input:focus{
+  border-color:#1e3a8a;
 }
-.correct{ background:#d4edda !important; }
-.wrong{ background:#f8d7da !important; }
+.long-answer{
+  width:100%;
+  min-height:70px;
+  padding:10px;
+  border-radius:8px;
+  border:2px solid #cbd5e1;
+  outline:none;
+  font-size:15px;
+  resize:vertical;
+}
+.long-answer:focus{
+  border-color:#1e3a8a;
+}
+.correctInput{
+  border-color:#16a34a !important;
+  background:#d4edda !important;
+}
+.wrongInput{
+  border-color:#dc2626 !important;
+  background:#f8d7da !important;
+}
 button{
   padding:10px 20px;
   border:none;
@@ -56,158 +77,473 @@ button{
 #result{
   font-weight:bold;
   font-size:18px;
-  margin-bottom:15px;
+  margin:15px 0;
 }
 .timer{ font-weight:bold; color:#facc15; }
+
+.smallNote{
+  color:#64748b;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.answerBox{
+  margin-top:10px;
+  padding:10px;
+  background:#eef2ff;
+  border-radius:8px;
+  display:none;
+}
+
+/* Paragraph display (Section C) */
+.paraBox{
+  background:#fff7ed;
+  border-left:6px solid #f59e0b;
+  padding:12px 14px;
+  border-radius:10px;
+  margin:10px 0 15px 0;
+  box-shadow:0 2px 6px rgba(0,0,0,0.06);
+}
+.paraTitle{
+  font-weight:bold;
+  color:#9a3412;
+  margin-bottom:6px;
+}
+.paraToggle{
+  background:#fde68a;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:10px 0 8px 0;
+}
+.paraToggle:hover{
+  background:#fcd34d;
+}
+
+/* Section D Tabs */
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:10px 0 15px;
+}
+.tab-btn{
+  background:#e5e7eb;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.tab-btn.active{
+  background:#1e3a8a;
+  color:white;
+}
+.tab-content{ display:none; }
+.tab-content.active{ display:block; }
+
+/* Divider headings */
+h3{
+  margin-top:25px;
+  color:#0f172a;
+}
+hr{
+  border:none;
+  border-top:1px solid #e2e8f0;
+  margin:25px 0;
+}
 </style>
 </head>
 
 <body>
-
 <header>
-<h2>Abhi Grammar Online Exam </h2>
-<div class="timer">Time Left: <span id="time">20:00</span></div>
+  <h2>Abhi Grammar Online Test</h2>
+  <div class="timer">Time Left: <span id="time">30:00</span></div>
 </header>
 
 <div class="container">
-<div id="result"></div>
-<div id="exam"></div>
-<button class="submit-btn" onclick="submitExam()">Submit Exam</button>
-<button class="reset-btn" onclick="location.reload()">Retake</button>
+  <div id="result"></div>
+  <div id="exam"></div>
+
+  <hr />
+
+  <!-- Section D Container -->
+  <div id="sectionD">
+    <h3>Section D: Correct the Sentence (Write Full Sentence) — 50 Questions</h3>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab(0)">1–10</button>
+      <button class="tab-btn" onclick="showTab(1)">11–20</button>
+      <button class="tab-btn" onclick="showTab(2)">21–30</button>
+      <button class="tab-btn" onclick="showTab(3)">31–40</button>
+      <button class="tab-btn" onclick="showTab(4)">41–50</button>
+    </div>
+
+    <div id="examD"></div>
+  </div>
+
+  <button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+  <button class="reset-btn" onclick="location.reload()">Retake</button>
 </div>
 
 <script>
-
-const questions=[];
-
-// ---------- Section A (25 Replace with Dash) ----------
-const replaceQuestions=[
-["She is suffering from ___ fever.",["a","an","the","no article"],0],
-["They are waiting ___ the entrance.",["in","at","on","to"],1],
-["I will return ___ 10 minutes.",["at","on","in","by"],2],
-["He lives ___ Delhi.",["at","in","on","to"],1],
-["The book is ___ the table.",["in","at","on","under"],2],
-["She arrived ___ the station.",["to","at","in","on"],1],
-["He apologized ___ his mistake.",["for","of","about","to"],0],
-["She is good ___ English.",["in","on","at","for"],2],
-["He insisted ___ paying.",["to","on","in","for"],1],
-["I am interested ___ music.",["on","for","in","at"],2],
-["She is afraid ___ dogs.",["from","of","about","with"],1],
-["He is proud ___ his son.",["for","of","at","on"],1],
-["The meeting is ___ Monday.",["in","on","at","by"],1],
-["She was born ___ 2005.",["on","at","in","by"],2],
-["He depends ___ his parents.",["in","on","at","with"],1],
-["She is married ___ a doctor.",["with","to","at","by"],1],
-["He is fond ___ cricket.",["in","of","at","for"],1],
-["She smiled ___ me.",["to","at","for","with"],1],
-["He divided cake ___ two parts.",["in","into","to","for"],1],
-["She prefers tea ___ coffee.",["than","to","over","with"],1],
-["The train arrived ___ time.",["in","at","on","by"],2],
-["He succeeded ___ passing.",["to","in","at","for"],1],
-["She complained ___ noise.",["for","about","to","at"],1],
-["He believes ___ hard work.",["in","on","at","to"],0],
-["I agree ___ you.",["to","with","on","for"],1]
-];
-
-replaceQuestions.forEach(q=>{
-  questions.push({section:"Section A: Replace with Dash",q:q[0],options:q[1],answer:q[2]});
-});
-
-// ---------- Section B (25 Correct Sentence) ----------
-const correctQuestions=[
-["She don't like coffee.",["She don't like coffee.","She doesn't like coffee.","She doesn't likes coffee.","She not like coffee."],1],
-["He have completed work.",["He have completed work.","He has completed work.","He having completed work.","He had complete work."],1],
-["Did he wrote test?",["Did he wrote test?","Did he write test?","He did wrote test?","Did he written test?"],1],
-["The book is in the table.",["The book is in the table.","The book is on the table.","The book is at table.","The book is over table."],1],
-["Between you and she.",["Between you and she.","Between you and her.","Between her and you.","Between you and hers."],1],
-["They was waiting.",["They was waiting.","They were waiting.","They are waiting.","They be waiting."],1],
-["He depend on father.",["He depend on father.","He depends on father.","He depended on father.","He depending on father."],1],
-["She is married with doctor.",["She is married with doctor.","She is married to doctor.","She married to doctor.","She is marry with doctor."],1],
-["I will return at 5 minutes.",["I will return at 5 minutes.","I will return in 5 minutes.","I will return on 5 minutes.","I return at 5 minutes."],1],
-["He is good in maths.",["He is good in maths.","He is good at maths.","He is good on maths.","He good at maths."],1],
-["She arrived to airport.",["She arrived to airport.","She arrived at airport.","She arrived in airport.","She arrived on airport."],1],
-["He apologized of mistake.",["He apologized of mistake.","He apologized for mistake.","He apologized to mistake.","He apologize for mistake."],1],
-["Meeting is in Monday.",["Meeting is in Monday.","Meeting is on Monday.","Meeting is at Monday.","Meeting Monday."],1],
-["She was born on 2000.",["She was born on 2000.","She was born in 2000.","She born in 2000.","She was born at 2000."],1],
-["He insisted to pay.",["He insisted to pay.","He insisted on paying.","He insist on pay.","He insisted paying."],1],
-["She is afraid from dog.",["She is afraid from dog.","She is afraid of dog.","She afraid of dog.","She is afraid by dog."],1],
-["I am interesting in music.",["I am interesting in music.","I am interested in music.","I interested in music.","I am interest in music."],1],
-["He borrowed money to me.",["He borrowed money to me.","He borrowed money from me.","He borrowed money me.","He borrowed from money me."],1],
-["Train arrived in time.",["Train arrived in time.","Train arrived on time.","Train arrived at time.","Train arrived by time."],1],
-["She congratulated him for success.",["She congratulated him for success.","She congratulated him on success.","She congratulated him at success.","She congratulated him success."],1],
-["He is tired from work.",["He is tired from work.","He is tired of work.","He tired of work.","He tired from work."],1],
-["She is capable to do this.",["She is capable to do this.","She is capable of doing this.","She capable of doing this.","She capable to do this."],1],
-["He proud of son.",["He proud of son.","He is proud of son.","He proud for son.","He is proud for son."],1],
-["She different from sister.",["She different from sister.","She is different from sister.","She different than sister.","She is different than sister."],1],
-["I will be back at 10 minutes.",["I will be back at 10 minutes.","I will be back in 10 minutes.","I will back in 10 minutes.","I back at 10 minutes."],1]
-];
-
-correctQuestions.forEach(q=>{
-  questions.push({section:"Section B: Correct Sentence",q:q[0],options:q[1],answer:q[2]});
-});
-
-// ---------- Render ----------
-const examDiv=document.getElementById("exam");
-let currentSection="";
-
-questions.forEach((q,i)=>{
-  if(q.section!==currentSection){
-    currentSection=q.section;
-    examDiv.innerHTML+=`<h3>${currentSection}</h3>`;
-  }
-  examDiv.innerHTML+=`
-  <div class="card">
-  <p><b>Q${i+1}.</b> ${q.q}</p>
-  <div class="options">
-  ${q.options.map((opt,index)=>
-  `<label><input type="radio" name="q${i}" value="${index}"> ${opt}</label>`
-  ).join("")}
-  </div>
-  <div id="answer${i}"></div>
-  </div>`;
-});
-
-// ---------- Submit ----------
-function submitExam(){
-  let score=0;
-  questions.forEach((q,i)=>{
-    const selected=document.querySelector(`input[name="q${i}"]:checked`);
-    const labels=document.querySelectorAll(`input[name="q${i}"]`);
-    labels.forEach(l=>l.disabled=true);
-
-    if(selected && parseInt(selected.value)===q.answer){
-      score++;
-      selected.parentElement.classList.add("correct");
-    }else if(selected){
-      selected.parentElement.classList.add("wrong");
-    }
-
-    labels[q.answer].parentElement.classList.add("correct");
-    document.getElementById("answer"+i).innerHTML=
-    `<p><b>Correct Answer:</b> ${q.options[q.answer]}</p>`;
-  });
-
-  let percent=Math.round((score/questions.length)*100);
-  let msg=percent>=90?"Excellent! 🌟":percent>=70?"Good Job 👍":"Keep Practicing 💪";
-
-  document.getElementById("result").innerHTML=
-  `Score: ${score}/50 (${percent}%) — ${msg}`;
+// -------------------------- Normalization (robust checking) --------------------------
+function normalize(txt){
+  return (txt || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[-–—]/g," ")            // hyphen as space
+    .replace(/[.,!?;:"()]/g,"")       // remove punctuation
+    .replace(/'/g,"")                 // remove apostrophes
+    .replace(/\s+/g," ");             // collapse spaces
+}
+function isCorrect(userInput, acceptedAnswers){
+  const u = normalize(userInput);
+  return acceptedAnswers.some(a => normalize(a) === u);
 }
 
-// ---------- Timer ----------
-let totalTime=1200;
-const timer=document.getElementById("time");
-const countdown=setInterval(()=>{
-  let m=Math.floor(totalTime/60);
-  let s=totalTime%60;
-  timer.textContent=`${m}:${s<10?'0'+s:s}`;
+// -------------------------- Section A/B/C Questions (single input) --------------------------
+const questions = []; // A + B + C
+
+// ---------- Section A (25 Fill in the blanks) ----------
+const replaceQuestions = [
+  ["She is suffering from ____ fever.",["a"]],
+  ["They are waiting ____ the entrance.",["at"]],
+  ["I will return ____ 10 minutes.",["in"]],
+  ["He lives ____ Delhi.",["in"]],
+  ["The book is ____ the table.",["on"]],
+  ["She arrived ____ the station.",["at"]],
+  ["He apologized ____ his mistake.",["for"]],
+  ["She is good ____ English.",["at"]],
+  ["He insisted ____ paying.",["on"]],
+  ["I am interested ____ music.",["in"]],
+  ["She is afraid ____ dogs.",["of"]],
+  ["He is proud ____ his son.",["of"]],
+  ["The meeting is ____ Monday.",["on"]],
+  ["She was born ____ 2005.",["in"]],
+  ["He depends ____ his parents.",["on"]],
+  ["She is married ____ a doctor.",["to"]],
+  ["He is fond ____ cricket.",["of"]],
+  ["She smiled ____ me.",["at"]],
+  ["He divided cake ____ two parts.",["into"]],
+  ["She prefers tea ____ coffee.",["to"]],
+  ["The train arrived ____ time.",["on"]],
+  ["He succeeded ____ passing.",["in"]],
+  ["She complained ____ noise.",["about"]],
+  ["He believes ____ hard work.",["in"]],
+  ["I agree ____ you.",["with"]]
+];
+replaceQuestions.forEach(q=>{
+  questions.push({ section:"Section A: Fill in the blanks", type:"short", q:q[0], answer:q[1] });
+});
+
+// ---------- Section B (25 Fill blanks - corrected sentence style) ----------
+const correctQuestions = [
+  ["She ____ like coffee.",["doesn't","does not","doesnt"]],
+  ["He ____ completed work.",["has"]],
+  ["Did he ____ test?",["write"]],
+  ["The book is ____ the table.",["on"]],
+  ["Between you and ____.",["her"]],
+  ["They ____ waiting.",["were"]],
+  ["He ____ on father.",["depends"]],
+  ["She is married ____ doctor.",["to"]],
+  ["I will return ____ 5 minutes.",["in"]],
+  ["He is good ____ maths.",["at"]],
+  ["She arrived ____ airport.",["at"]],
+  ["He apologized ____ mistake.",["for"]],
+  ["Meeting is ____ Monday.",["on"]],
+  ["She was born ____ 2000.",["in"]],
+  ["He insisted ____ paying.",["on"]],
+  ["She is afraid ____ dog.",["of"]],
+  ["I am ____ in music.",["interested"]],
+  ["He borrowed money ____ me.",["from"]],
+  ["Train arrived ____ time.",["on"]],
+  ["She congratulated him ____ success.",["on"]],
+  ["He is tired ____ work.",["of"]],
+  ["She is capable ____ doing this.",["of"]],
+  ["He is ____ of son.",["proud"]],
+  ["She is different ____ sister.",["from"]],
+  ["I will be back ____ 10 minutes.",["in"]]
+];
+correctQuestions.forEach(q=>{
+  questions.push({ section:"Section B: Fill in the blanks (Correct sentence)", type:"short", q:q[0], answer:q[1] });
+});
+
+// ---------- Section C (Paragraph Based) with Expand/Collapse paragraph ----------
+const paraTextMap = {
+  "Section C1: Paragraph 1 – Ron (Art Gallery)":
+    "Your name is Ron. You are 42 years old. You are excited because you are going to visit a new art gallery today. Your hobby is painting and studying the work of different artists in school. Your favorite subject was art. However, you have never been fond of books.",
+  "Section C2: Paragraph 2 – Vacation & Projects":
+    "You plan to go on a two week vacation to Canada next month, you plan to hand over two of your pending projects to your colleague Mark. You are in discussion with your manager Sarah. Join the conversation by giving suitable one sentence replies to the questions.",
+  "Section C3: Paragraph 3 – Alisha":
+    "Your name is Alisha. You are 31 years old. You woke up in a good mood because you are going to meet your friends today. You enjoy reading books, especially books about science in school. Your favorite subjects were science and geography. But you like science the most.",
+  "Section C4: Paragraph 4 – Pizza Order":
+    "Your name is Peter. You wish to place an order for home delivery for a large pepperoni pizza and one bottle of juice, you will pay in cash. Join the conversation by giving suitable one sentence replies to the questions, Hi, this is pizza drill.",
+  "Section C5: Paragraph 5 – Sam":
+    "Your name is Sam. You were born in Sydney. In high school, you became interested in law. After graduation, you studied at the Ilt Law Institute. You are happy today because you are going to play a volleyball match with your friends, although you plan to play another match this weekend, you usually prefer to spend your free time at home playing video games.",
+  "Section C6: Paragraph 6 – Paris Trip":
+    "You are going to Paris for a week's vacation with your best friend. This is your first trip to Paris. You plan to visit the Eiffel Tower and the cathedral. On the flight, a fellow passenger starts a conversation with you. Join the conversation by giving suitable one sentence replies to the questions."
+};
+
+function pushParaSection(sec, qaPairs){
+  qaPairs.forEach(pair=>{
+    questions.push({
+      section: sec,
+      type: "short",                 // still textbox
+      paraText: paraTextMap[sec],    // paragraph shown once per section
+      q: pair[0],
+      answer: pair[1]
+    });
+  });
+}
+
+pushParaSection("Section C1: Paragraph 1 – Ron (Art Gallery)", [
+  ["What is your name?", ["My name is Ron."]],
+  ["What was your favorite subject in school?", ["My favorite subject in school was art."]],
+  ["How are you feeling today?", ["I am feeling excited today because I am going to visit a new art gallery."]]
+]);
+
+pushParaSection("Section C2: Paragraph 2 – Vacation & Projects", [
+  ["So you're planning on taking a vacation.", ["Yes, I am planning to take a two-week vacation to Canada next month."]],
+  ["Where are you heading to?", ["I am heading to Canada for a two-week vacation next month."]],
+  ["And how long would it be for?", ["It will be for two weeks."]],
+  ["Do you have any project pending?", ["Yes, I have two pending projects that I plan to hand over to my colleague Mark before I leave."]],
+  ["Can you tell me who will be working on them in your absence?", ["In my absence, my colleague Mark will be working on the two projects."]],
+  ["Okay, let's find them. You can send me an email with details of the projects that you are working on.",
+   ["Sure, I will send you an email with all the details of the projects I am currently working on."]]
+]);
+
+pushParaSection("Section C3: Paragraph 3 – Alisha", [
+  ["What is your age?", ["I am 31 years old."]],
+  ["Do you like reading books?", ["Yes, I enjoy reading books, especially books about science."]],
+  ["How are you feeling today?", ["I am feeling happy today because I am going to meet my friends."]]
+]);
+
+pushParaSection("Section C4: Paragraph 4 – Pizza Order", [
+  ["Would you like to order for pickup or delivery?", ["I would like to place an order for home delivery, please."]],
+  ["Can I have your name please?", ["My name is Peter."]],
+  ["Okay, what would you like?", ["I would like to order a large pepperoni pizza and one bottle of juice, please."]],
+  ["Okay, are you paying by card or cash?", ["I will be paying in cash."]]
+]);
+
+pushParaSection("Section C5: Paragraph 5 – Sam", [
+  ["Where were you born?", ["I was born in Sydney."]],
+  ["What is your favorite sport?", ["My favorite sport is volleyball because I enjoy playing matches with my friends."]],
+  ["What is one thing you do on weekends?", ["One thing I do on weekends is play volleyball with my friends."]]
+]);
+
+pushParaSection("Section C6: Paragraph 6 – Paris Trip", [
+  ["Is this your first visit to Paris?", ["Yes, this is my first visit to Paris."]],
+  ["Are you traveling with someone?", ["Yes, I am traveling with my best friend."]],
+  ["How long are you staying?", ["I am staying in Paris for one week."]],
+  ["What do you plan to do in Paris?", ["I plan to visit the Eiffel Tower and explore the famous cathedral in Paris."]]
+]);
+
+// -------------------------- Render A/B/C --------------------------
+const examDiv = document.getElementById("exam");
+let currentSection = "";
+
+function safeIdFromSection(sec){
+  return "para_" + sec.replace(/[^\w]+/g,"_");
+}
+function togglePara(id, btn){
+  const box = document.getElementById(id);
+  if(box.style.display === "none"){
+    box.style.display = "block";
+    btn.textContent = "📕 Hide Paragraph";
+  }else{
+    box.style.display = "none";
+    btn.textContent = "📘 Show Paragraph";
+  }
+}
+
+questions.forEach((q,i)=>{
+  if(q.section !== currentSection){
+    currentSection = q.section;
+    examDiv.innerHTML += `<h3>${currentSection}</h3>`;
+
+    // Expand/Collapse paragraph only when paraText exists (Section C)
+    if(q.paraText){
+      const pid = safeIdFromSection(currentSection);
+      examDiv.innerHTML += `
+        <button class="paraToggle" onclick="togglePara('${pid}', this)">📘 Show Paragraph</button>
+        <div class="paraBox" id="${pid}" style="display:none;">
+          <div class="paraTitle">Paragraph</div>
+          <div>${q.paraText}</div>
+        </div>
+      `;
+    }
+  }
+
+  // Input textbox for Section A/B/C
+  examDiv.innerHTML += `
+    <div class="card">
+      <p><b>Q${i+1}.</b> ${q.q}</p>
+      <input class="blank-input" type="text" id="q${i}" placeholder="Type your answer..." autocomplete="off" />
+      <div class="smallNote">Tip: Checked ignoring CAPS/spaces/punctuation.</div>
+      <div class="answerBox" id="answer${i}"></div>
+    </div>
+  `;
+});
+
+// -------------------------- Section D (50 Full-sentence corrections in 5 tabs) --------------------------
+const dataD = [
+  ["They is waiting outside.","They are waiting outside."],
+  ["She don’t like chocolate.","She doesn’t like chocolate."],
+  ["He have completed his work.","He has completed his work."],
+  ["I will return at one hour.","I will return in one hour."],
+  ["She is suffering from terrible pain.","She is suffering from terrible pain."],
+  ["Between you and she, this is secret.","Between you and her, this is secret."],
+  ["He lives at Mumbai.","He lives in Mumbai."],
+  ["The book is in the table.","The book is on the table."],
+  ["Did he went to school yesterday?","Did he go to school yesterday?"],
+  ["She is good in dancing.","She is good at dancing."],
+
+  ["They gave his vote to another candidate.","They gave their vote to another candidate."],
+  ["The distance among my home and office is short.","The distance between my home and office is short."],
+  ["He insisted to pay the bill.","He insisted on paying the bill."],
+  ["I am interesting in sports.","I am interested in sports."],
+  ["She arrived to the airport early.","She arrived at the airport early."],
+  ["He apologized of his mistake.","He apologized for his mistake."],
+  ["The meeting is in Monday.","The meeting is on Monday."],
+  ["She was born on 2005.","She was born in 2005."],
+  ["He depend on his brother.","He depends on his brother."],
+  ["She is married with a doctor.","She is married to a doctor."],
+
+  ["He is fond in music.","He is fond of music."],
+  ["She is afraid from snakes.","She is afraid of snakes."],
+  ["I agree to you.","I agree with you."],
+  ["He is responsible of the project.","He is responsible for the project."],
+  ["She smiled to me.","She smiled at me."],
+  ["He borrowed money from me yesterday?","He borrowed money from me yesterday."],
+  ["The train arrived in time.","The train arrived on time."],
+  ["She congratulated him for his success?","She congratulated him on his success."],
+  ["He is tired from work.","He is tired of work."],
+  ["She is capable to do this.","She is capable of doing this."],
+
+  ["He is proud for his son.","He is proud of his son."],
+  ["They arrived in the station late.","They arrived at the station late."],
+  ["She complained for the noise.","She complained about the noise."],
+  ["He succeeded to pass the exam.","He succeeded in passing the exam."],
+  ["She is different than her sister.","She is different from her sister."],
+  ["I am waiting your answer.","I am waiting for your answer."],
+  ["He divided the cake in two parts.","He divided the cake into two parts."],
+  ["She prefers tea than coffee.","She prefers tea to coffee."],
+  ["The cat is hiding under the bed?","The cat is hiding under the bed."],
+  ["They discussed about the issue.","They discussed the issue."],
+
+  ["She is angry on him.","She is angry with him."],
+  ["He believes on luck.","He believes in luck."],
+  ["She is excited for the party.","She is excited about the party."],
+  ["We arrived to the hotel.","We arrived at the hotel."],
+  ["He is married to his friend since five years.","He has been married to his friend for five years."],
+  ["She don’t understands the lesson.","She doesn’t understand the lesson."],
+  ["These is my pen.","This is my pen."],
+  ["He write the test yesterday.","He wrote the test yesterday."],
+  ["The project was dash because of rain.","The project was delayed because of rain."],
+  ["I will be back at ten minutes.","I will be back in ten minutes."]
+];
+
+const examD = document.getElementById("examD");
+for(let t=0; t<5; t++){
+  const div = document.createElement("div");
+  div.className = "tab-content" + (t===0 ? " active" : "");
+  div.id = "tab" + t;
+
+  for(let i=t*10; i<(t+1)*10; i++){
+    div.innerHTML += `
+      <div class="card">
+        <p><b>D${i+1}.</b> Correct this sentence:<br><i>${dataD[i][0]}</i></p>
+        <textarea class="long-answer" id="d${i}" placeholder="Write the correct sentence..."></textarea>
+        <div class="smallNote">Tip: Write full correct sentence.</div>
+        <div class="answerBox" id="da${i}"></div>
+      </div>
+    `;
+  }
+  examD.appendChild(div);
+}
+
+function showTab(n){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("tab"+n).classList.add("active");
+  document.querySelectorAll(".tab-btn")[n].classList.add("active");
+}
+
+// -------------------------- Submit Exam (Grades A+B+C + D) --------------------------
+function submitExam(){
+  let scoreABC = 0;
+  let scoreD = 0;
+
+  // Grade A/B/C
+  questions.forEach((q,i)=>{
+    const input = document.getElementById("q"+i);
+    input.disabled = true;
+
+    if(isCorrect(input.value, q.answer)){
+      scoreABC++;
+      input.classList.add("correctInput");
+    }else{
+      input.classList.add("wrongInput");
+    }
+
+    const ansBox = document.getElementById("answer"+i);
+    ansBox.style.display = "block";
+    ansBox.innerHTML = `<b>Correct Answer:</b> ${q.answer.join(" / ")}`;
+  });
+
+  // Grade D
+  for(let i=0; i<dataD.length; i++){
+    const t = document.getElementById("d"+i);
+    t.disabled = true;
+
+    if(isCorrect(t.value, [dataD[i][1]])){
+      scoreD++;
+      t.classList.add("correctInput");
+    }else{
+      t.classList.add("wrongInput");
+    }
+
+    const a = document.getElementById("da"+i);
+    a.style.display = "block";
+    a.innerHTML = `<b>Correct Answer:</b> ${dataD[i][1]}`;
+  }
+
+  const total = questions.length + dataD.length;
+  const score = scoreABC + scoreD;
+  const percent = Math.round((score/total)*100);
+  const msg = percent>=90 ? "Excellent! 🌟" : percent>=70 ? "Good Job 👍" : "Keep Practicing 💪";
+
+  document.getElementById("result").innerHTML =
+    `Total Score: ${score}/${total} (${percent}%) — ${msg}
+     <br><span style="font-size:14px;color:#475569;">
+     Section A+B+C: ${scoreABC}/${questions.length} &nbsp; | &nbsp; Section D: ${scoreD}/50
+     </span>`;
+}
+
+// -------------------------- Timer (30 minutes) --------------------------
+let totalTime = 1800; // 30 min
+const timer = document.getElementById("time");
+const countdown = setInterval(()=>{
+  const m = Math.floor(totalTime/60);
+  const s = totalTime%60;
+  timer.textContent = `${m}:${s<10?'0'+s:s}`;
   totalTime--;
-  if(totalTime<0){
+
+  if(totalTime < 0){
     clearInterval(countdown);
     submitExam();
   }
-},1000);
-
+}, 1000);
 </script>
 </body>
+<footer style="background-color: #222; color: white; text-align: center; padding: 15px 0; margin-top: 20px;">
+    <p style="margin: 0; font-size: 14px;">
+        Developed by <strong>Abhishek Shankar</strong>
+    </p>
+</footer>
+</footer>
 </html>
