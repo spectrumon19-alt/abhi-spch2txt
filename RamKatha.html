@@ -210,7 +210,7 @@
             color:var(--gold);text-decoration:none;
             text-shadow:2px 2px 4px rgba(0,0,0,.5);
         }
-        .nav-logo span{color:#fff;font-size:.85rem;font-weight:400;display:block}
+        .nav-logo span{color:#fff;font-size:.85rem;font-weight:400;display:block;margin-bottom:8px}
         .nav-links{display:flex;list-style:none;gap:25px}
         .nav-links a{
             color:#fff;text-decoration:none;font-weight:500;font-size:.9rem;
@@ -679,6 +679,32 @@
             .btn{width:80%;text-align:center}
             .maharaj-highlights{grid-template-columns:1fr}.about-image{height:350px}
         }
+		
+		
+		
+		
+	.ram-ticker {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #f4c20d; /* saffron-yellow */
+    padding: 12px 0;
+}
+
+.ram-ticker-text {
+    display: inline-block;
+    font-size: 19px;
+    font-weight: normal;
+    color: #000;
+    animation: ramScroll 18s linear infinite;
+}
+
+@keyframes ramScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+		
+		
     </style>
 </head>
 <body>
@@ -710,6 +736,26 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
+		
+					 <div class="ram-ticker">
+  <div class="ram-ticker-text">
+  	ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ | ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ |
+    सीताराम सीताराम कहिए | सीताराम सीताराम कहिए |
+	Chant Sitaram Sitaram | Chant Sitaram Sitaram |
+	ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ | ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ |
+    सीताराम सीताराम कहिए | सीताराम सीताराम कहिए |
+	ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ | ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ |
+    सीताराम सीताराम कहिए | सीताराम सीताराम कहिए |
+	Chant Sitaram Sitaram | Chant Sitaram Sitaram |
+    &nbsp;&nbsp;&nbsp;
+    ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ | ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ |
+	सीताराम सीताराम कहिए | सीताराम सीताराम कहिए |
+ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ | ಸೀತಾರಾಮ್ ಸೀತಾರಾಮ್ ಎಂದು ಹೇಳಿ |
+Chant Sitaram Sitaram | Chant Sitaram Sitaram |
+&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+			
     </nav>
 
     <!-- ===== HERO abhi1 ===== श्री
@@ -718,11 +764,11 @@
         <div class="mandala"></div>
         <div class="particles" id="particles"></div>
         <div class="hero-content">
-            <!-- <div class="om-symbol">🕉️</div> --> <br></br>
-			 <div class="om-symbol"> </div>
-			<div class="om-symbol"> </div>
+            <!-- <div class="om-symbol">🕉️</div> -->
+			
 			
             <!-- <p class="hero-subtitle-top">✦ Divine Spiritual Gathering ✦</p> -->
+			 <br></br> <br></br> <br></br>
 			  <p class="hero-subtitle-top">✦ Resonating from Hanuman’s Bhoomi ✦</p>
 			<h3 class="hero-title"> ಶ್ರೀ  <span class="highlight">ರಾಮ ಕಥಾ </span></h3>
             <h1 class="hero-title_1">श्री <span class="highlight">राम कथा</span></h1>
@@ -1322,7 +1368,4 @@
     })();
     </script>
 </body>
-
 </html>
-
-
