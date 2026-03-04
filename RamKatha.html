@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ram Katha 2026 | Pujya Sri Rajan Jee Maharaj | Palace Ground, Bangalore</title>
+    <meta name="description" content="Shri Ram Katha by Pujya Sri Rajan Jee Maharaj at Palace Ground, Bangalore. 1-7 September 2026. Free Entry via Gate No. 8. Organized by Sailesh Kumar Mishra and team.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap');
+
+        *{margin:0;padding:0;box-sizing:border-box}
+
+        :root{
+            --saffron:#FF6F00;
+            --deep-saffron:#E65100;
+            --gold:#FFD700;
+            --dark-gold:#B8860B;
+            --maroon:#800000;
+            --deep-maroon:#4A0000;
+            --cream:#FFF8E7;
+            --warm-white:#FFFDF5;
+            --dark-bg:#1a0a00;
+            --green-accent:#2E7D32;
+        }
+
+        html{scroll-behavior:smooth}
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:var(--warm-white);
+            color:#333;
+            overflow-x:hidden;
+        }
+
+        /* ===== DECORATIVE BORDER ===== */
+        .decorative-border{
+            width:100%;height:8px;
+            background:repeating-linear-gradient(90deg,var(--saffron) 0 20px,var(--gold) 20px 40px,var(--maroon) 40px 60px);
+        }
+
+        .decorative-divider{
+            display:flex;align-items:center;justify-content:center;gap:15px;
+            padding:10px 0;
+        }
+        .decorative-divider .line{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+        .decorative-divider .symbol{color:var(--gold);font-size:1.2rem}
+
+        /* ===== NAVBAR ===== */
+        .navbar{
+            position:fixed;top:0;width:100%;z-index:1000;
+            transition:all .4s ease;padding:15px 0;
+        }
+        .navbar.scrolled{
+            background:linear-gradient(135deg,var(--deep-maroon),var(--maroon));
+            box-shadow:0 4px 30px rgba(0,0,0,.3);padding:8px 0;
+        }
+        .nav-container{
+            max-width:1200px;margin:0 auto;display:flex;
+            justify-content:space-between;align-items:center;padding:0 30px;
+        }
+        .nav-logo{
+            font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;
+            color:var(--gold);text-decoration:none;
+            text-shadow:2px 2px 4px rgba(0,0,0,.5);
+        }
+        .nav-logo span{color:#fff;font-size:.85rem;font-weight:400;display:block}
+        .nav-links{display:flex;list-style:none;gap:25px}
+        .nav-links a{
+            color:#fff;text-decoration:none;font-weight:500;font-size:.9rem;
+            position:relative;transition:color .3s;letter-spacing:.5px;
+        }
+        .nav-links a::after{
+            content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;
+            background:var(--gold);transition:width .3s;
+        }
+        .nav-links a:hover::after{width:100%}
+        .nav-links a:hover{color:var(--gold)}
+        .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
+        .hamburger span{width:28px;height:3px;background:var(--gold);transition:all .3s;border-radius:2px}
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+
+        /* ===== HERO ===== */
+        .hero{
+            min-height:100vh;
+            background:linear-gradient(135deg,var(--deep-maroon) 0%,var(--maroon) 30%,#a52a00 60%,var(--deep-saffron) 100%);
+            display:flex;align-items:center;justify-content:center;
+            position:relative;overflow:hidden;
+        }
+        .hero::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+            background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity:.5;
+        }
+        .particles{position:absolute;width:100%;height:100%;overflow:hidden}
+        .particle{
+            position:absolute;width:4px;height:4px;background:var(--gold);
+            border-radius:50%;opacity:0;animation:float-up 6s infinite;
+        }
+        @keyframes float-up{
+            0%{opacity:0;transform:translateY(100vh) scale(0)}
+            10%{opacity:1}
+            90%{opacity:.5}
+            100%{opacity:0;transform:translateY(-10vh) scale(1)}
+        }
+        .mandala{
+            position:absolute;width:600px;height:600px;
+            border:2px solid rgba(255,215,0,.1);border-radius:50%;
+            top:50%;left:50%;transform:translate(-50%,-50%);
+            animation:rotate-slow 60s linear infinite;
+        }
+        .mandala::before{
+            content:'';position:absolute;width:500px;height:500px;
+            border:1px solid rgba(255,215,0,.08);border-radius:50%;
+            top:50%;left:50%;transform:translate(-50%,-50%);
+        }
+        .mandala::after{
+            content:'';position:absolute;width:700px;height:700px;
+            border:1px solid rgba(255,215,0,.05);border-radius:50%;
+            top:50%;left:50%;transform:translate(-50%,-50%);
+        }
+        @keyframes rotate-slow{
+            from{transform:translate(-50%,-50%) rotate(0deg)}
+            to{transform:translate(-50%,-50%) rotate(360deg)}
+        }
+        .hero-content{text-align:center;z-index:10;position:relative;padding:20px}
+        .om-symbol{
+            font-size:4rem;color:var(--gold);
+            text-shadow:0 0 30px rgba(255,215,0,.5);
+            animation:pulse-glow 3s ease-in-out infinite;margin-bottom:10px;
+        }
+        @keyframes pulse-glow{
+            0%,100%{text-shadow:0 0 20px rgba(255,215,0,.3)}
+            50%{text-shadow:0 0 40px rgba(255,215,0,.8),0 0 80px rgba(255,215,0,.3)}
+        }
+        .hero-subtitle-top{
+            font-family:'Poppins',sans-serif;font-size:1.1rem;
+            color:rgba(255,255,255,.8);letter-spacing:8px;
+            text-transform:uppercase;margin-bottom:15px;
+        }
+        .hero-title{
+            font-family:'Cinzel',serif;font-size:5rem;font-weight:900;
+            color:#fff;text-shadow:3px 3px 6px rgba(0,0,0,.4);
+            line-height:1.1;margin-bottom:10px;
+        }
+        .hero-title .highlight{
+            color:var(--gold);display:block;font-size:6rem;
+            text-shadow:3px 3px 6px rgba(0,0,0,.4),0 0 40px rgba(255,215,0,.3);
+        }
+        .hero-maharaj{
+            font-family:'Great Vibes',cursive;font-size:2rem;
+            color:var(--gold);margin:20px 0 5px;
+            text-shadow:2px 2px 4px rgba(0,0,0,.5);
+        }
+        .hero-maharaj-name{
+            font-family:'Cinzel',serif;font-size:1.6rem;color:#fff;
+            font-weight:600;letter-spacing:3px;margin-bottom:8px;
+        }
+        .hero-organizer{
+            font-size:.95rem;color:rgba(255,255,255,.75);
+            margin-bottom:25px;letter-spacing:1px;
+        }
+        .hero-organizer strong{color:var(--gold)}
+        .hero-details{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:25px 0}
+        .hero-detail-item{
+            background:rgba(255,255,255,.1);backdrop-filter:blur(10px);
+            border:1px solid rgba(255,215,0,.3);border-radius:15px;
+            padding:20px 30px;text-align:center;transition:transform .3s,box-shadow .3s;
+        }
+        .hero-detail-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(255,215,0,.2)}
+        .hero-detail-item .icon{font-size:2rem;margin-bottom:8px}
+        .hero-detail-item .label{font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:5px}
+        .hero-detail-item .value{font-size:1.05rem;color:#fff;font-weight:600}
+        .cta-buttons{margin-top:35px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+        .btn{
+            padding:15px 40px;border:none;border-radius:50px;font-size:1rem;
+            font-weight:600;cursor:pointer;transition:all .3s;
+            text-decoration:none;display:inline-block;letter-spacing:1px;
+        }
+        .btn-primary{
+            background:linear-gradient(135deg,var(--gold),var(--dark-gold));
+            color:var(--deep-maroon);box-shadow:0 5px 20px rgba(255,215,0,.4);
+        }
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(255,215,0,.6)}
+        .btn-secondary{background:transparent;color:var(--gold);border:2px solid var(--gold)}
+        .btn-secondary:hover{background:var(--gold);color:var(--deep-maroon);transform:translateY(-3px)}
+        .scroll-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite}
+        .scroll-indicator span{display:block;width:30px;height:50px;border:2px solid rgba(255,215,0,.5);border-radius:15px;position:relative}
+        .scroll-indicator span::after{
+            content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;
+            position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scroll-dot 2s infinite;
+        }
+        @keyframes scroll-dot{0%{top:8px;opacity:1}100%{top:35px;opacity:0}}
+        @keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-10px)}60%{transform:translateX(-50%) translateY(-5px)}}
+
+        /* ===== COUNTDOWN ===== */
+        .countdown-section{
+            background:linear-gradient(135deg,var(--deep-maroon),#2d0000);
+            padding:60px 20px;text-align:center;
+        }
+        .countdown-title{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);margin-bottom:10px}
+        .countdown-subtitle{color:rgba(255,255,255,.7);margin-bottom:40px;font-size:1rem}
+        .countdown-timer{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+        .countdown-item{
+            background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);
+            border-radius:15px;padding:25px 20px;min-width:120px;transition:transform .3s;
+        }
+        .countdown-item:hover{transform:scale(1.05)}
+        .countdown-number{font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:var(--gold);line-height:1}
+        .countdown-label{font-size:.85rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:2px;margin-top:8px}
+
+        /* ===== SECTIONS ===== */
+        .section{padding:100px 20px}
+        .section-container{max-width:1200px;margin:0 auto}
+        .section-header{text-align:center;margin-bottom:60px}
+        .section-badge{
+            display:inline-block;padding:5px 20px;
+            background:linear-gradient(135deg,rgba(255,111,0,.1),rgba(128,0,0,.1));
+            border:1px solid var(--saffron);border-radius:50px;
+            font-size:.85rem;color:var(--saffron);text-transform:uppercase;
+            letter-spacing:3px;margin-bottom:15px;
+        }
+        .section-title{font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:var(--maroon);margin-bottom:15px}
+        .section-divider{width:80px;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold),var(--saffron));margin:0 auto 20px;border-radius:2px}
+        .section-description{max-width:700px;margin:0 auto;color:#666;font-size:1.05rem;line-height:1.8}
+
+        /* ===== ABOUT ===== */
+        .about-section{background:var(--warm-white)}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .about-image-container{position:relative}
+        .about-image{
+            width:100%;height:500px;
+            background:linear-gradient(135deg,var(--saffron),var(--maroon));
+            border-radius:20px;display:flex;align-items:center;justify-content:center;
+            position:relative;overflow:hidden;
+            box-shadow:0 20px 60px rgba(128,0,0,.2);
+        }
+        .about-image::before{
+            content:'';position:absolute;width:200%;height:200%;
+            background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v22H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zM0 0' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .about-image-text{z-index:2;text-align:center;color:#fff}
+        .about-image-text .deity-icon{font-size:8rem;display:block;margin-bottom:15px;filter:drop-shadow(0 0 20px rgba(255,215,0,.5))}
+        .about-image-text p{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold)}
+        .about-image-text .hindi-text{font-family:'Tiro Devanagari Hindi',serif;font-size:1.2rem;color:rgba(255,255,255,.8);margin-top:10px}
+        .about-image-frame{position:absolute;top:-15px;right:-15px;width:100%;height:100%;border:3px solid var(--gold);border-radius:20px;z-index:-1}
+        .about-content h3{font-family:'Cinzel',serif;font-size:2rem;color:var(--maroon);margin-bottom:20px}
+        .about-content p{color:#555;line-height:1.9;margin-bottom:20px;font-size:1.05rem}
+        .about-features{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+        .about-feature{
+            display:flex;align-items:center;gap:12px;padding:12px 15px;
+            background:rgba(255,111,0,.05);border-radius:10px;border-left:3px solid var(--saffron);
+        }
+        .about-feature .feature-icon{font-size:1.5rem}
+        .about-feature .feature-text{font-weight:500;color:var(--maroon);font-size:.95rem}
+
+        /* ===== MAHARAJ SECTION ===== */
+        .maharaj-section{
+            background:linear-gradient(135deg,#FFF5E6,#FFF0D6);
+            position:relative;overflow:hidden;
+        }
+        .maharaj-section::before{content:'🙏';position:absolute;font-size:15rem;opacity:.03;right:-20px;top:50%;transform:translateY(-50%)}
+        .maharaj-main{max-width:1100px;margin:0 auto}
+        .maharaj-card{
+            background:#fff;border-radius:25px;overflow:hidden;
+            box-shadow:0 20px 60px rgba(128,0,0,.1);
+            display:grid;grid-template-columns:380px 1fr;
+        }
+        .maharaj-image{
+            background:linear-gradient(180deg,var(--saffron),var(--maroon));
+            display:flex;align-items:center;justify-content:center;
+            flex-direction:column;position:relative;min-height:450px;padding:30px;
+        }
+        .maharaj-avatar{
+            width:200px;height:200px;background:rgba(255,255,255,.15);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:6rem;border:4px solid rgba(255,215,0,.5);
+            box-shadow:0 0 40px rgba(255,215,0,.2);margin-bottom:20px;
+        }
+        .maharaj-image .visit-link{
+            display:inline-block;padding:10px 25px;
+            background:rgba(255,255,255,.15);border:1px solid rgba(255,215,0,.5);
+            border-radius:50px;color:var(--gold);text-decoration:none;
+            font-size:.85rem;transition:all .3s;margin-top:10px;
+        }
+        .maharaj-image .visit-link:hover{background:var(--gold);color:var(--deep-maroon)}
+        .maharaj-info{padding:45px 40px;display:flex;flex-direction:column;justify-content:center}
+        .maharaj-info .katha-by{font-size:.85rem;color:var(--saffron);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+        .maharaj-info h3{font-family:'Cinzel',serif;font-size:2rem;color:var(--maroon);margin-bottom:5px}
+        .maharaj-info .maharaj-title-text{font-family:'Great Vibes',cursive;font-size:1.4rem;color:var(--dark-gold);margin-bottom:20px}
+        .maharaj-info p{color:#666;line-height:1.8;font-size:.98rem;margin-bottom:12px}
+        .maharaj-info p strong{color:var(--maroon)}
+
+        .maharaj-highlights{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;margin-top:40px;
+        }
+        .maharaj-highlight-card{
+            background:#fff;border-radius:15px;padding:25px 20px;
+            text-align:center;box-shadow:0 5px 25px rgba(0,0,0,.06);
+            border-bottom:3px solid var(--saffron);transition:transform .3s;
+        }
+        .maharaj-highlight-card:hover{transform:translateY(-5px)}
+        .maharaj-highlight-card .mh-icon{font-size:2.5rem;margin-bottom:10px}
+        .maharaj-highlight-card h5{font-family:'Cinzel',serif;font-size:1rem;color:var(--maroon);margin-bottom:8px}
+        .maharaj-highlight-card p{font-size:.85rem;color:#777;line-height:1.6}
+
+        /* ===== ORGANIZER SECTION ===== */
+        .organizer-section{
+            background:linear-gradient(135deg,var(--cream),#FFF5E6);
+            position:relative;
+        }
+        .organizer-card{
+            max-width:900px;margin:0 auto;
+            display:grid;grid-template-columns:1fr 1fr;
+            background:#fff;border-radius:25px;overflow:hidden;
+            box-shadow:0 15px 50px rgba(128,0,0,.08);
+        }
+        .organizer-left{
+            background:linear-gradient(135deg,var(--maroon),var(--deep-maroon));
+            padding:50px 40px;display:flex;flex-direction:column;
+            justify-content:center;align-items:center;text-align:center;
+        }
+        .organizer-avatar{
+            width:140px;height:140px;background:rgba(255,255,255,.12);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:4rem;border:3px solid rgba(255,215,0,.4);margin-bottom:20px;
+        }
+        .organizer-left h3{font-family:'Cinzel',serif;font-size:1.5rem;color:#fff;margin-bottom:5px}
+        .organizer-left .org-role{font-size:.9rem;color:var(--gold);font-weight:500;letter-spacing:1px}
+        .organizer-right{padding:50px 40px;display:flex;flex-direction:column;justify-content:center}
+        .organizer-right h4{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--maroon);margin-bottom:15px}
+        .organizer-right p{color:#666;line-height:1.8;font-size:.95rem;margin-bottom:15px}
+        .organizer-right .org-features{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+        .org-feature-item{
+            display:flex;align-items:center;gap:10px;
+            padding:8px 12px;background:rgba(255,111,0,.05);
+            border-radius:8px;font-size:.9rem;color:var(--maroon);font-weight:500;
+        }
+        .org-feature-item .ofi{font-size:1.2rem}
+
+        /* ===== SCHEDULE ===== */
+        .schedule-section{background:var(--warm-white)}
+        .schedule-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+        .schedule-card{
+            background:#fff;border-radius:20px;overflow:hidden;
+            box-shadow:0 5px 25px rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s;
+            border:1px solid rgba(255,111,0,.1);
+        }
+        .schedule-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(128,0,0,.15)}
+        .schedule-card-header{
+            background:linear-gradient(135deg,var(--saffron),var(--maroon));
+            padding:20px 25px;display:flex;justify-content:space-between;align-items:center;
+        }
+        .schedule-day{color:#fff;font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700}
+        .schedule-date{background:rgba(255,255,255,.2);color:#fff;padding:5px 15px;border-radius:20px;font-size:.85rem;font-weight:500}
+        .schedule-card-body{padding:25px}
+        .schedule-topic{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--maroon);margin-bottom:15px;font-weight:600}
+        .schedule-time-slot{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(0,0,0,.08)}
+        .schedule-time-slot:last-child{border-bottom:none}
+        .time-icon{font-size:1.2rem}
+        .time-text{font-size:.9rem;color:#555}
+        .time-text strong{color:var(--maroon)}
+
+        /* ===== VENUE ===== */
+        .venue-section{
+            background:linear-gradient(135deg,var(--deep-maroon),#2d0000);
+            color:#fff;position:relative;
+        }
+        .venue-section .section-badge{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.1)}
+        .venue-section .section-title{color:#fff}
+        .venue-section .section-description{color:rgba(255,255,255,.7)}
+        .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+        .venue-map{
+            width:100%;height:400px;background:rgba(255,255,255,.05);
+            border-radius:20px;border:2px solid rgba(255,215,0,.2);
+            overflow:hidden;position:relative;
+        }
+        .venue-map iframe{width:100%;height:100%;border:none;filter:grayscale(30%) contrast(1.1)}
+        .venue-details{display:flex;flex-direction:column;gap:25px}
+        .venue-detail-card{
+            display:flex;gap:20px;align-items:flex-start;
+            padding:25px;background:rgba(255,255,255,.05);
+            border-radius:15px;border:1px solid rgba(255,215,0,.15);
+            transition:transform .3s,background .3s;
+        }
+        .venue-detail-card:hover{transform:translateX(10px);background:rgba(255,215,0,.1)}
+        .venue-detail-icon{font-size:2.5rem;min-width:50px;text-align:center}
+        .venue-detail-text h4{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin-bottom:5px}
+        .venue-detail-text p{color:rgba(255,255,255,.7);font-size:.95rem;line-height:1.6}
+        .gate-highlight{
+            display:inline-block;
+            background:linear-gradient(135deg,var(--gold),var(--dark-gold));
+            color:var(--deep-maroon);padding:3px 12px;border-radius:5px;
+            font-weight:700;font-size:1rem;
+        }
+
+        /* ===== GUIDELINES ===== */
+        .guidelines-section{background:var(--warm-white)}
+        .guidelines-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+        .guideline-card{
+            background:#fff;border-radius:20px;padding:35px 25px;
+            text-align:center;box-shadow:0 5px 25px rgba(0,0,0,.05);
+            border-top:4px solid var(--saffron);transition:transform .3s;
+        }
+        .guideline-card:hover{transform:translateY(-5px)}
+        .guideline-icon{font-size:3rem;margin-bottom:15px}
+        .guideline-card h4{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--maroon);margin-bottom:10px}
+        .guideline-card p{color:#666;font-size:.9rem;line-height:1.7}
+
+        /* ===== GALLERY / HIGHLIGHTS ===== */
+        .highlights-section{
+            background:linear-gradient(135deg,#FFF5E6,#FFF0D6);
+        }
+        .highlights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        .highlight-item{
+            height:220px;border-radius:20px;overflow:hidden;
+            position:relative;cursor:pointer;
+            background:linear-gradient(135deg,var(--saffron),var(--maroon));
+            display:flex;align-items:center;justify-content:center;
+            transition:transform .3s;
+        }
+        .highlight-item:hover{transform:scale(1.03)}
+        .highlight-item:nth-child(1){grid-column:span 2;height:280px}
+        .highlight-item .hi-emoji{font-size:4rem;filter:drop-shadow(0 0 10px rgba(0,0,0,.3))}
+        .highlight-item .hi-text{
+            position:absolute;bottom:0;left:0;right:0;
+            padding:15px 20px;
+            background:linear-gradient(transparent,rgba(0,0,0,.7));
+            color:#fff;font-family:'Cinzel',serif;font-size:.95rem;
+        }
+
+        /* ===== REGISTER ===== */
+        .register-section{
+            background:linear-gradient(135deg,#FFF5E6,#FFE8CC);position:relative;
+        }
+        .register-container{
+            max-width:700px;margin:0 auto;background:#fff;
+            border-radius:25px;padding:50px;
+            box-shadow:0 20px 60px rgba(128,0,0,.1);position:relative;
+        }
+        .register-container::before{
+            content:'';position:absolute;top:-3px;left:-3px;right:-3px;bottom:-3px;
+            background:linear-gradient(135deg,var(--saffron),var(--gold),var(--maroon));
+            border-radius:27px;z-index:-1;
+        }
+        .form-group{margin-bottom:25px}
+        .form-group label{display:block;font-weight:600;color:var(--maroon);margin-bottom:8px;font-size:.95rem}
+        .form-group input,.form-group select,.form-group textarea{
+            width:100%;padding:14px 18px;border:2px solid #eee;
+            border-radius:12px;font-size:1rem;font-family:'Poppins',sans-serif;
+            transition:border-color .3s,box-shadow .3s;background:#FAFAFA;
+        }
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+            outline:none;border-color:var(--saffron);
+            box-shadow:0 0 0 4px rgba(255,111,0,.1);background:#fff;
+        }
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .form-submit{text-align:center;margin-top:30px}
+        .btn-submit{
+            background:linear-gradient(135deg,var(--saffron),var(--maroon));
+            color:#fff;padding:16px 50px;border:none;border-radius:50px;
+            font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .3s;
+            font-family:'Poppins',sans-serif;letter-spacing:1px;
+            box-shadow:0 5px 20px rgba(128,0,0,.3);
+        }
+        .btn-submit:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(128,0,0,.4)}
+        .free-entry-badge{
+            display:inline-block;background:linear-gradient(135deg,#4CAF50,#2E7D32);
+            color:#fff;padding:10px 30px;border-radius:50px;
+            font-weight:600;font-size:1.1rem;margin-top:20px;
+            box-shadow:0 4px 15px rgba(76,175,80,.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer{background:linear-gradient(135deg,var(--dark-bg),#0d0500);padding:60px 20px 30px;color:rgba(255,255,255,.7)}
+        .footer-grid{
+            max-width:1200px;margin:0 auto;
+            display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+            gap:40px;margin-bottom:40px;
+        }
+        .footer-brand h3{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--gold);margin-bottom:15px}
+        .footer-brand p{line-height:1.8;font-size:.9rem}
+        .footer-brand .org-credit{
+            margin-top:15px;padding:10px 15px;
+            background:rgba(255,215,0,.08);border-radius:10px;
+            border-left:3px solid var(--gold);font-size:.85rem;
+        }
+        .footer-brand .org-credit strong{color:var(--gold)}
+        .footer-col h4{
+            font-family:'Cinzel',serif;color:#fff;font-size:1.1rem;
+            margin-bottom:20px;position:relative;padding-bottom:10px;
+        }
+        .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:40px;height:2px;background:var(--gold)}
+        .footer-col ul{list-style:none}
+        .footer-col ul li{margin-bottom:10px}
+        .footer-col ul li a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s;font-size:.9rem}
+        .footer-col ul li a:hover{color:var(--gold)}
+        .footer-social{display:flex;gap:15px;margin-top:20px}
+        .social-icon{
+            width:40px;height:40px;border:1px solid rgba(255,215,0,.3);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:1.2rem;transition:all .3s;cursor:pointer;text-decoration:none;
+        }
+        .social-icon:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-3px)}
+        .footer-bottom{
+            max-width:1200px;margin:0 auto;padding-top:30px;
+            border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.85rem;
+        }
+        .footer-bottom .om{color:var(--gold);font-size:1.5rem}
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .fade-in-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-in-left.visible{opacity:1;transform:translateX(0)}
+        .fade-in-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-in-right.visible{opacity:1;transform:translateX(0)}
+
+        /* ===== MODAL ===== */
+        .modal-overlay{
+            display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,.7);z-index:2000;justify-content:center;
+            align-items:center;backdrop-filter:blur(5px);
+        }
+        .modal-overlay.active{display:flex}
+        .modal{
+            background:#fff;border-radius:25px;padding:50px;
+            max-width:500px;width:90%;text-align:center;animation:modal-pop .4s ease;
+        }
+        @keyframes modal-pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+        .modal .check-icon{font-size:4rem;margin-bottom:15px}
+        .modal h3{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--maroon);margin-bottom:10px}
+        .modal p{color:#666;line-height:1.7;margin-bottom:25px}
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top{
+            position:fixed;bottom:30px;right:30px;width:50px;height:50px;
+            background:linear-gradient(135deg,var(--saffron),var(--maroon));
+            color:#fff;border:none;border-radius:50%;font-size:1.3rem;
+            cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;
+            box-shadow:0 5px 20px rgba(128,0,0,.3);z-index:999;
+        }
+        .back-to-top.visible{opacity:1;visibility:visible}
+        .back-to-top:hover{transform:translateY(-5px)}
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1024px){
+            .hero-title{font-size:3.5rem}
+            .hero-title .highlight{font-size:4.5rem}
+            .about-grid,.venue-grid{grid-template-columns:1fr}
+            .about-grid{gap:40px}
+            .maharaj-card{grid-template-columns:1fr}
+            .maharaj-image{min-height:300px}
+            .organizer-card{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr 1fr}
+            .highlights-grid{grid-template-columns:repeat(2,1fr)}
+            .highlight-item:nth-child(1){grid-column:span 2}
+        }
+        @media(max-width:768px){
+            .nav-links{
+                display:none;position:absolute;top:100%;left:0;width:100%;
+                background:linear-gradient(135deg,var(--deep-maroon),var(--maroon));
+                flex-direction:column;padding:20px;gap:15px;
+                box-shadow:0 10px 30px rgba(0,0,0,.3);
+            }
+            .nav-links.active{display:flex}
+            .hamburger{display:flex}
+            .hero-title{font-size:2.5rem}
+            .hero-title .highlight{font-size:3rem}
+            .hero-maharaj{font-size:1.5rem}
+            .hero-details{gap:15px}
+            .hero-detail-item{padding:15px 20px}
+            .section-title{font-size:2rem}
+            .form-row{grid-template-columns:1fr}
+            .register-container{padding:30px 20px}
+            .footer-grid{grid-template-columns:1fr}
+            .about-features{grid-template-columns:1fr}
+            .schedule-grid{grid-template-columns:1fr}
+            .countdown-item{min-width:90px;padding:15px 12px}
+            .countdown-number{font-size:2rem}
+            .maharaj-highlights{grid-template-columns:1fr 1fr}
+            .highlights-grid{grid-template-columns:1fr}
+            .highlight-item:nth-child(1){grid-column:span 1}
+        }
+        @media(max-width:480px){
+            .hero-title{font-size:2rem}
+            .hero-title .highlight{font-size:2.5rem}
+            .hero-subtitle-top{font-size:.8rem;letter-spacing:4px}
+            .cta-buttons{flex-direction:column;align-items:center}
+            .btn{width:80%;text-align:center}
+            .maharaj-highlights{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">🙏 Ram Katha <span>Palace Ground, Bangalore 2026</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#maharaj" onclick="closeMenu()">Maharaj Ji</a></li>
+                <li><a href="#schedule" onclick="closeMenu()">Schedule</a></li>
+                <li><a href="#venue" onclick="closeMenu()">Venue</a></li>
+                <li><a href="#organizer" onclick="closeMenu()">Organizer</a></li>
+                <li><a href="#register" onclick="closeMenu()">Register</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="mandala"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="om-symbol">🕉️</div>
+            <p class="hero-subtitle-top">✦ Divine Spiritual Gathering ✦</p>
+            <h1 class="hero-title">
+                Shri
+                <span class="highlight">Ram Katha</span>
+            </h1>
+            <p class="hero-maharaj">Divinely Narrated by</p>
+            <h2 class="hero-maharaj-name">Pujya Sri Rajan Jee Maharaj</h2>
+            <p class="hero-organizer">Organized by <strong>Shri Sailesh Kumar Mishra</strong> and Team</p>
+
+            <div class="hero-details">
+                <div class="hero-detail-item">
+                    <div class="icon">📅</div>
+                    <div class="label">Date</div>
+                    <div class="value">1 – 7 September 2026</div>
+                </div>
+                <div class="hero-detail-item">
+                    <div class="icon">📍</div>
+                    <div class="label">Venue</div>
+                    <div class="value">Palace Ground, Bangalore</div>
+                </div>
+                <div class="hero-detail-item">
+                    <div class="icon">🚪</div>
+                    <div class="label">Entry</div>
+                    <div class="value">Gate No. 8</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#register" class="btn btn-primary">Register Now — Free Entry</a>
+                <a href="#schedule" class="btn btn-secondary">View Schedule</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- ===== COUNTDOWN ===== -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">✦ Event Begins In ✦</h2>
+        <p class="countdown-subtitle">Mark your calendars for this divine experience</p>
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">000</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="decorative-border"></div>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about-section" id="about">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ About The Event ✦</span>
+                <h2 class="section-title">Shri Ram Katha</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    A seven-day divine spiritual discourse that brings the eternal story of Lord Ram to life,
+                    inspiring millions with the timeless values of dharma, truth, and devotion.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-container fade-in-left">
+                    <div class="about-image">
+                        <div class="about-image-text">
+                            <span class="deity-icon">🏹</span>
+                            <p>Jai Shri Ram</p>
+                            <p class="hindi-text">॥ श्री रामचरितमानस ॥</p>
+                        </div>
+                    </div>
+                    <div class="about-image-frame"></div>
+                </div>
+                <div class="about-content fade-in-right">
+                    <h3>Experience the Divine Narrative</h3>
+                    <p>
+                        Ram Katha is the sacred narration of the life and teachings of Lord Shri Ram,
+                        as described in the holy <strong>Ramcharitmanas</strong> composed by Goswami Tulsidas Ji. This
+                        seven-day spiritual event will take you on a transformative journey through the
+                        divine pastimes of Lord Ram — from His miraculous birth in Ayodhya to the
+                        establishment of Ram Rajya.
+                    </p>
+                    <p>
+                        Under the divine guidance of <strong>Pujya Sri Rajan Jee Maharaj</strong>,
+                        experience the transformative power of Ram Katha that purifies the mind,
+                        elevates the soul, and fills the heart with divine love and devotion. This grand
+                        event is lovingly organized by <strong>Shri Sailesh Kumar Mishra and his dedicated team</strong>
+                        to bring this sacred experience to the people of Bangalore.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <span class="feature-icon">📿</span>
+                            <span class="feature-text">7 Days of Katha</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="feature-icon">🎵</span>
+                            <span class="feature-text">Devotional Bhajans</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="feature-icon">🎤</span>
+                            <span class="feature-text">Live Pravachan</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="feature-icon">🙏</span>
+                            <span class="feature-text">Aarti & Darshan</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="feature-icon">🍲</span>
+                            <span class="feature-text">Free Prasad Seva</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="feature-icon">🎁</span>
+                            <span class="feature-text">Completely Free Entry</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAHARAJ JI SECTION ===== -->
+    <section class="section maharaj-section" id="maharaj">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ The Narrator ✦</span>
+                <h2 class="section-title">Pujya Sri Rajan Jee Maharaj</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    A revered spiritual luminary whose divine narration of Ram Katha has
+                    transformed the lives of millions across India and the world.
+                </p>
+            </div>
+
+            <div class="maharaj-main">
+                <div class="maharaj-card fade-in">
+                    <div class="maharaj-image">
+                        <div class="maharaj-avatar">🙏</div>
+                        <a href="https://pujyarajanjee.com/" target="_blank" rel="noopener" class="visit-link">🌐 Visit Official Website</a>
+                    </div>
+                    <div class="maharaj-info">
+                        <p class="katha-by">Katha Vachak</p>
+                        <h3>Pujya Sri Rajan Jee Maharaj</h3>
+                        <p class="maharaj-title-text">Renowned Kathavachak & Spiritual Guide</p>
+                        <p>
+                            <strong>Pujya Sri Rajan Jee Maharaj</strong> is one of the most revered and beloved 
+                            Ram Katha narrators of our time. Born with a deep spiritual inclination, Maharaj Ji 
+                            dedicated his life to the service of Lord Ram and the propagation of the sacred 
+                            <strong>Ramcharitmanas</strong> composed by Goswami Tulsidas Ji.
+                        </p>
+                        <p>
+                            Maharaj Ji's unique narration style seamlessly blends profound scriptural knowledge 
+                            with soul-stirring <strong>bhajans and kirtans</strong>, creating an atmosphere of divine 
+                            ecstasy that touches the hearts of every listener. His discourses illuminate the 
+                            timeless teachings of the Ramayana, making them relevant and accessible to modern-day seekers.
+                        </p>
+                        <p>
+                            Having conducted hundreds of <strong>Ram Katha events across India and internationally</strong>, 
+                            Pujya Rajan Jee Maharaj has inspired lakhs of devotees to walk the path of 
+                            <strong>dharma, satya, prema, and bhakti</strong>. His teachings emphasize compassion, 
+                            selfless service (seva), devotion to God, and the upliftment of society through spiritual values.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Highlights about Maharaj Ji -->
+                <div class="maharaj-highlights">
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">📖</div>
+                        <h5>Ramcharitmanas Scholar</h5>
+                        <p>Deep mastery of Tulsidas Ji's Ramcharitmanas with insightful commentary that connects ancient wisdom to daily life.</p>
+                    </div>
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">🎶</div>
+                        <h5>Melodious Bhajan & Kirtan</h5>
+                        <p>Maharaj Ji's soul-stirring devotional singing creates a divine atmosphere, moving devotees to tears of joy and devotion.</p>
+                    </div>
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">🌍</div>
+                        <h5>National & International Kathas</h5>
+                        <p>Conducted hundreds of Ram Katha events across India and abroad, spreading the divine message of Lord Ram worldwide.</p>
+                    </div>
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">❤️</div>
+                        <h5>Social Upliftment & Seva</h5>
+                        <p>Actively promotes social harmony, education, and charitable work. Emphasizes selfless service as the highest form of devotion.</p>
+                    </div>
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">🙏</div>
+                        <h5>Path of Dharma & Bhakti</h5>
+                        <p>Inspires devotees to embrace dharma, truth, compassion and devotion as the foundation of a meaningful and spiritual life.</p>
+                    </div>
+                    <div class="maharaj-highlight-card fade-in">
+                        <div class="mh-icon">👨‍👩‍👧‍👦</div>
+                        <h5>Millions of Followers</h5>
+                        <p>Lakhs of devotees across India and the world follow Maharaj Ji's teachings, finding peace, purpose, and divine connection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="decorative-border"></div>
+
+    <!-- ===== SCHEDULE ===== -->
+    <section class="section schedule-section" id="schedule">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ Daily Programme ✦</span>
+                <h2 class="section-title">7-Day Katha Schedule</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Each day unfolds a new chapter from the divine life of Lord Shri Ram — from the
+                    Bal Kand to the Uttar Kand of Ramcharitmanas.
+                </p>
+            </div>
+
+            <div class="schedule-grid">
+                <!-- Day 1 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 1</span>
+                        <span class="schedule-date">1 Sep, Tue</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Bal Kand — Divine Birth of Lord Ram</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🪔</span>
+                            <span class="time-text"><strong>Special:</strong> Inaugural Ceremony & Aarti</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 2</span>
+                        <span class="schedule-date">2 Sep, Wed</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Ayodhya Kand — Life in Ayodhya</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 3</span>
+                        <span class="schedule-date">3 Sep, Thu</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Aranya Kand — The Forest Journey</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 4</span>
+                        <span class="schedule-date">4 Sep, Fri</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Kishkindha Kand — Alliance with Sugriva</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 5</span>
+                        <span class="schedule-date">5 Sep, Sat</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Sundar Kand — Hanuman's Heroic Journey</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">📿</span>
+                            <span class="time-text"><strong>Special:</strong> Sundar Kand Path</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header">
+                        <span class="schedule-day">Day 6</span>
+                        <span class="schedule-date">6 Sep, Sun</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Lanka Kand — The Great Battle</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 5:00 PM – 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="schedule-card fade-in">
+                    <div class="schedule-card-header" style="background:linear-gradient(135deg,var(--gold),var(--dark-gold))">
+                        <span class="schedule-day" style="color:var(--deep-maroon)">Day 7 ✨</span>
+                        <span class="schedule-date" style="background:rgba(128,0,0,.2);color:var(--deep-maroon)">7 Sep, Mon</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <h4 class="schedule-topic">🏵️ Uttar Kand — Ram Rajya & Grand Finale</h4>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌅</span>
+                            <span class="time-text"><strong>Morning:</strong> 9:00 AM – 12:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🌇</span>
+                            <span class="time-text"><strong>Evening:</strong> 4:00 PM – 10:00 PM</span>
+                        </div>
+                        <div class="schedule-time-slot">
+                            <span class="time-icon">🪔</span>
+                            <span class="time-text"><strong>Grand Maha Aarti & Conclusion</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VENUE ===== -->
+    <section class="section venue-section" id="venue">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ Event Location ✦</span>
+                <h2 class="section-title">Venue Details</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Join us at the magnificent Palace Ground in the heart of Bangalore
+                </p>
+            </div>
+            <div class="venue-grid">
+                <div class="venue-map fade-in-left">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5!2d77.5900!3d13.0020!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sPalace%20Grounds%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <div class="venue-details fade-in-right">
+                    <div class="venue-detail-card">
+                        <div class="venue-detail-icon">🏛️</div>
+                        <div class="venue-detail-text">
+                            <h4>Venue</h4>
+                            <p>Palace Ground, Jayamahal Road,<br>Bangalore, Karnataka – 560006</p>
+                        </div>
+                    </div>
+                    <div class="venue-detail-card">
+                        <div class="venue-detail-icon">🚪</div>
+                        <div class="venue-detail-text">
+                            <h4>Entry Point</h4>
+                            <p>Please enter through <span class="gate-highlight">Gate No. 8</span><br>
+                            Follow the signage for Ram Katha Pandal</p>
+                        </div>
+                    </div>
+                    <div class="venue-detail-card">
+                        <div class="venue-detail-icon">🕐</div>
+                        <div class="venue-detail-text">
+                            <h4>Timings</h4>
+                            <p>Morning Session: 9:00 AM – 12:00 PM<br>
+                            Evening Session: 5:00 PM – 9:00 PM<br>
+                            Gates open 1 hour before each session</p>
+                        </div>
+                    </div>
+                    <div class="venue-detail-card">
+                        <div class="venue-detail-icon">🅿️</div>
+                        <div class="venue-detail-text">
+                            <h4>Parking & Transport</h4>
+                            <p>Free parking available. Nearest Metro: Mahalakshmi Layout.
+                            Shuttle service from major bus stops.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="decorative-border"></div>
+
+    <!-- ===== ORGANIZER SECTION ===== -->
+    <section class="section organizer-section" id="organizer">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ Event Organizer ✦</span>
+                <h2 class="section-title">Organized With Devotion</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="organizer-card fade-in">
+                <div class="organizer-left">
+                    <div class="organizer-avatar">🙏</div>
+                    <h3>Shri Sailesh Kumar Mishra</h3>
+                    <p class="org-role">Chief Organizer & Team</p>
+                </div>
+                <div class="organizer-right">
+                    <h4>A Labour of Love & Devotion</h4>
+                    <p>
+                        This grand Ram Katha event is lovingly organized by <strong>Shri Sailesh Kumar Mishra</strong>
+                        and his dedicated team of volunteers and devotees. With a deep commitment to spreading
+                        the divine message of Lord Ram, the team has worked tirelessly to bring
+                        <strong>Pujya Sri Rajan Jee Maharaj</strong> to Bangalore for this transformative 7-day spiritual experience.
+                    </p>
+                    <p>
+                        Shri Sailesh Kumar Mishra Ji's vision is to create a space where thousands of devotees
+                        can come together, immerse in devotion, and experience the grace of Ram Katha — completely free of cost
+                        as a seva to the community.
+                    </p>
+                    <div class="org-features">
+                        <div class="org-feature-item">
+                            <span class="ofi">✅</span> Free entry for all devotees
+                        </div>
+                        <div class="org-feature-item">
+                            <span class="ofi">✅</span> Free Maha Prasad (Bhandara) daily
+                        </div>
+                        <div class="org-feature-item">
+                            <span class="ofi">✅</span> Well-organized seating & facilities
+                        </div>
+                        <div class="org-feature-item">
+                            <span class="ofi">✅</span> Volunteer & Seva opportunities available
+                        </div>
+                        <div class="org-feature-item">
+                            <span class="ofi">✅</span> Safety & security arrangements in place
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GUIDELINES ===== -->
+    <section class="section guidelines-section" id="guidelines">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ Visitor Information ✦</span>
+                <h2 class="section-title">Guidelines for Devotees</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="guidelines-grid">
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">👕</div>
+                    <h4>Dress Code</h4>
+                    <p>Please wear simple and modest traditional attire. Avoid wearing shorts, sleeveless clothing, or leather items inside the Pandal.</p>
+                </div>
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">📱</div>
+                    <h4>Mobile Phones</h4>
+                    <p>Kindly keep your mobile phones on silent mode during the Katha. Photography allowed only during Aarti and designated times.</p>
+                </div>
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">🥿</div>
+                    <h4>Footwear</h4>
+                    <p>Dedicated shoe racks available near the entry. Please remove footwear before entering the main Katha Pandal.</p>
+                </div>
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">🍲</div>
+                    <h4>Prasad & Bhandara</h4>
+                    <p>Free Maha Prasad (Bhandara) served daily to all devotees after the morning session. Evening tea & snacks also available.</p>
+                </div>
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">🧘</div>
+                    <h4>Seating</h4>
+                    <p>Floor seating on carpets and mats. Special seating for senior citizens, women, and differently-abled devotees. Come early for best seats.</p>
+                </div>
+                <div class="guideline-card fade-in">
+                    <div class="guideline-icon">💧</div>
+                    <h4>Facilities</h4>
+                    <p>Drinking water stations, first-aid, clean washrooms, lost & found counter, and wheelchair access available on premises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HIGHLIGHTS / EXPERIENCE ===== -->
+    <section class="section highlights-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ What Awaits You ✦</span>
+                <h2 class="section-title">The Ram Katha Experience</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="highlights-grid fade-in">
+                <div class="highlight-item" style="background:linear-gradient(135deg,#b71c1c,var(--deep-maroon))">
+                    <span class="hi-emoji">📖</span>
+                    <div class="hi-text">Divine Katha Narration by Pujya Sri Rajan Jee Maharaj</div>
+                </div>
+                <div class="highlight-item" style="background:linear-gradient(135deg,var(--saffron),#d84315)">
+                    <span class="hi-emoji">🎵</span>
+                    <div class="hi-text">Soul-Stirring Bhajans & Kirtans</div>
+                </div>
+                <div class="highlight-item" style="background:linear-gradient(135deg,var(--dark-gold),#8d6e63)">
+                    <span class="hi-emoji">🪔</span>
+                    <div class="hi-text">Grand Maha Aarti Every Evening</div>
+                </div>
+                <div class="highlight-item" style="background:linear-gradient(135deg,var(--maroon),#4e342e)">
+                    <span class="hi-emoji">🍲</span>
+                    <div class="hi-text">Free Maha Prasad for All</div>
+                </div>
+                <div class="highlight-item" style="background:linear-gradient(135deg,#e65100,#bf360c)">
+                    <span class="hi-emoji">🌺</span>
+                    <div class="hi-text">Beautiful Pandal Decoration & Jhankis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="decorative-border"></div>
+
+    <!-- ===== REGISTER ===== -->
+    <section class="section register-section" id="register">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">✦ Join Us ✦</span>
+                <h2 class="section-title">Register for Ram Katha</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Secure your seat for this divine event. Registration is free and open to all devotees.
+                </p>
+                <div class="free-entry-badge">🎁 Completely Free Entry — No Charges</div>
+            </div>
+
+            <div class="register-container fade-in">
+                <form id="registrationForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" placeholder="Your city" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="members">Number of Members</label>
+                            <select id="members">
+                                <option value="1">1 Person</option>
+                                <option value="2">2 Persons</option>
+                                <option value="3">3 Persons</option>
+                                <option value="4">4 Persons</option>
+                                <option value="5">5+ Persons</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="days">Which Days?</label>
+                            <select id="days">
+                                <option value="all">All 7 Days (1-7 Sep)</option>
+                                <option value="1-3">Day 1-3</option>
+                                <option value="4-7">Day 4-7</option>
+                                <option value="weekends">Weekends Only</option>
+                                <option value="day7">Day 7 Grand Finale Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="seva">Interested in Seva?</label>
+                            <select id="seva">
+                                <option value="no">No, Just Attending</option>
+                                <option value="volunteer">Yes, as Volunteer</option>
+                                <option value="prasad">Yes, Prasad Seva</option>
+                                <option value="decoration">Yes, Decoration Seva</option>
+                                <option value="other">Yes, Other Seva</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="howHeard">How did you hear?</label>
+                            <select id="howHeard">
+                                <option value="">Select...</option>
+                                <option value="social">Social Media</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="friend">Friend / Family</option>
+                                <option value="poster">Poster / Banner</option>
+                                <option value="website">Website</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Special Requirements (Optional)</label>
+                        <textarea id="message" rows="3" placeholder="Any special seating requirements, accessibility needs, dietary restrictions, etc."></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn-submit">🙏 Register Now — Jai Shri Ram</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>🙏 Shri Ram Katha 2026</h3>
+                <p>
+                    A divine spiritual gathering bringing together devotees from across
+                    the nation to experience the sacred narration of Lord Ram's life and teachings
+                    by Pujya Sri Rajan Jee Maharaj at Palace Ground, Bangalore.
+                </p>
+                <div class="org-credit">
+                    Organized by <strong>Shri Sailesh Kumar Mishra</strong> and Team
+                </div>
+                <div class="footer-social">
+                    <a class="social-icon" title="Facebook">📘</a>
+                    <a class="social-icon" title="YouTube">▶️</a>
+                    <a class="social-icon" title="Instagram">📷</a>
+                    <a class="social-icon" title="WhatsApp">💬</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Event</a></li>
+                    <li><a href="#maharaj">Pujya Rajan Jee Maharaj</a></li>
+                    <li><a href="#schedule">7-Day Schedule</a></li>
+                    <li><a href="#venue">Venue & Directions</a></li>
+                    <li><a href="#register">Register Free</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Event Info</h4>
+                <ul>
+                    <li><a href="#guidelines">Visitor Guidelines</a></li>
+                    <li><a href="#schedule">Daily Timings</a></li>
+                    <li><a href="#venue">Gate No. 8 Entry</a></li>
+                    <li><a href="#organizer">Organizer Info</a></li>
+                    <li><a href="https://pujyarajanjee.com/" target="_blank">Maharaj Ji Website ↗</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">📞 +91 98XXX XXXXX</a></li>
+                    <li><a href="#">📧 info@ramkatha2026.com</a></li>
+                    <li><a href="#">📍 Palace Ground, Bangalore</a></li>
+                    <li><a href="#">🚪 Entry: Gate No. 8</a></li>
+                    <li><a href="#">📅 1-7 September 2026</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="om">🙏</p>
+            <p style="margin-top:10px">
+                © 2026 Shri Ram Katha — Palace Ground, Bangalore | Organized by Sailesh Kumar Mishra & Team | All Rights Reserved
+            </p>
+            <p style="margin-top:8px;color:var(--gold);font-family:'Tiro Devanagari Hindi','Cinzel',serif;font-size:1.1rem">
+                ॥ श्री राम जय राम जय जय राम ॥
+            </p>
+            <p style="margin-top:5px;font-size:.8rem;color:rgba(255,255,255,.4)">
+                Learn more about Pujya Sri Rajan Jee Maharaj at
+                <a href="https://pujyarajanjee.com/" target="_blank" style="color:var(--gold);text-decoration:underline">pujyarajanjee.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">⬆</button>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="check-icon">✅</div>
+            <h3>Registration Successful!</h3>
+            <p>
+                Jai Shri Ram! 🙏<br>
+                Your registration for <strong>Ram Katha</strong> (1-7 Sep 2026) has been received.<br><br>
+                📍 <strong>Palace Ground, Bangalore</strong><br>
+                🚪 Enter from <strong>Gate No. 8</strong><br>
+                🎤 Katha by <strong>Pujya Sri Rajan Jee Maharaj</strong><br><br>
+                <em>Organized by Shri Sailesh Kumar Mishra & Team</em>
+            </p>
+            <button class="btn btn-primary" onclick="closeModal()">🙏 Jai Shri Ram</button>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== PARTICLES =====
+        (function createParticles(){
+            const c=document.getElementById('particles');
+            for(let i=0;i<50;i++){
+                const p=document.createElement('div');
+                p.classList.add('particle');
+                p.style.left=Math.random()*100+'%';
+                p.style.animationDelay=Math.random()*6+'s';
+                p.style.animationDuration=(Math.random()*4+4)+'s';
+                const s=(Math.random()*4+2)+'px';
+                p.style.width=s;p.style.height=s;
+                c.appendChild(p);
+            }
+        })();
+
+        // ===== NAVBAR SCROLL =====
+        const navbar=document.getElementById('navbar');
+        const backToTopBtn=document.getElementById('backToTop');
+        window.addEventListener('scroll',()=>{
+            navbar.classList.toggle('scrolled',window.scrollY>80);
+            backToTopBtn.classList.toggle('visible',window.scrollY>500);
+        });
+
+        // ===== MOBILE MENU =====
+        function toggleMenu(){
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+        function closeMenu(){
+            document.getElementById('navLinks').classList.remove('active');
+            document.getElementById('hamburger').classList.remove('active');
+        }
+
+        // ===== COUNTDOWN =====
+        function updateCountdown(){
+            const eventDate=new Date('September 1, 2026 09:00:00').getTime();
+            const now=Date.now();
+            const diff=eventDate-now;
+            if(diff>0){
+                const d=Math.floor(diff/(864e5));
+                const h=Math.floor((diff%864e5)/36e5);
+                const m=Math.floor((diff%36e5)/6e4);
+                const s=Math.floor((diff%6e4)/1e3);
+                document.getElementById('days').textContent=String(d).padStart(3,'0');
+                document.getElementById('hours').textContent=String(h).padStart(2,'0');
+                document.getElementById('minutes').textContent=String(m).padStart(2,'0');
+                document.getElementById('seconds').textContent=String(s).padStart(2,'0');
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown,1000);
+
+        // ===== SCROLL ANIMATIONS =====
+        const observer=new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+        },{threshold:0.12,rootMargin:'0px 0px -50px 0px'});
+        document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right').forEach(el=>observer.observe(el));
+
+        // ===== FORM =====
+        function handleSubmit(e){
+            e.preventDefault();
+            const fields=['firstName','lastName','email','phone','city'];
+            for(const f of fields){
+                if(!document.getElementById(f).value.trim()){
+                    alert('Please fill in all required fields.');return;
+                }
+            }
+            document.getElementById('successModal').classList.add('active');
+            document.getElementById('registrationForm').reset();
+        }
+        function closeModal(){document.getElementById('successModal').classList.remove('active')}
+        document.getElementById('successModal').addEventListener('click',function(e){
+            if(e.target===this)closeModal();
+        });
+
+        // ===== BACK TO TOP =====
+        function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+            anchor.addEventListener('click',function(e){
+                e.preventDefault();
+                const target=document.querySelector(this.getAttribute('href'));
+                if(target){
+                    window.scrollTo({top:target.offsetTop-70,behavior:'smooth'});
+                }
+            });
+        });
+
+        // ===== ACTIVE NAV HIGHLIGHT =====
+        const sections=document.querySelectorAll('section[id]');
+        window.addEventListener('scroll',()=>{
+            let current='';
+            sections.forEach(s=>{if(scrollY>=s.offsetTop-100)current=s.getAttribute('id')});
+            document.querySelectorAll('.nav-links a').forEach(link=>{
+                link.style.color=link.getAttribute('href')==='#'+current?'var(--gold)':'';
+            });
+        });
+
+        // ===== TYPING EFFECT ON HINDI SHLOKA =====
+        (function(){
+            const el=document.querySelector('.about-image-text .hindi-text');
+            if(!el)return;
+            const text=el.textContent;
+            el.textContent='';
+            let i=0;
+            const observer2=new IntersectionObserver((entries)=>{
+                if(entries[0].isIntersecting){
+                    const interval=setInterval(()=>{
+                        el.textContent+=text[i];i++;
+                        if(i>=text.length)clearInterval(interval);
+                    },100);
+                    observer2.disconnect();
+                }
+            },{threshold:0.5});
+            observer2.observe(el);
+        })();
+    </script>
+</body>
+</html>
