@@ -1081,9 +1081,8 @@ Chant Sitaram Sitaram | Chant Sitaram Sitaram |
 			'ram3.png',
             'ram4.png',
 			'ram5.png',
-            'rram6.png',
+            'ram6.png',
 			'ram10.png',
-			'ram9.png',
             'ram7.png'
             // Add more: 'Ram4.png', 'images/Ram5.jpg', etc.
         ];
@@ -1312,7 +1311,7 @@ Chant Sitaram Sitaram | Chant Sitaram Sitaram |
         /* ===========================================================
            FORM
            =========================================================== */
-        window.handleSubmit = function(e) {
+        window.handleSubmit1 = function(e) {
             e.preventDefault();
             var fields = ['firstName','lastName','email','phone','city'];
             for (var i = 0; i < fields.length; i++) {
@@ -1369,8 +1368,162 @@ Chant Sitaram Sitaram | Chant Sitaram Sitaram |
 
     })();
     </script>
+	
+	
+	
+	
+	
+	<!-- ===== REGISTER ===== -->
+<section class="section register-section" id="register">
+    <div class="section-container">
+        <div class="section-header fade-in">
+            <span class="section-badge">✦ Join Us ✦</span>
+            <h2 class="section-title">Register for Ram Katha</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">Registration is free and open to all devotees.</p>
+            <div class="free-entry-badge">🎁 Completely Free Entry</div>
+        </div>
+
+        <div class="register-container fade-in">
+            <form id="registrationForm" onsubmit="handleSubmit(event)">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" placeholder="First name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" placeholder="Last name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <input type="text" id="city" placeholder="Your city" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="members">Members</label>
+                        <select id="members">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daysSelect">Which Days?</label>
+                        <select id="daysSelect">
+                            <option>All 7 Days</option>
+                            <option>Day 1-3</option>
+                            <option>Day 4-7</option>
+                            <option>Weekends Only</option>
+                            <option>Day 7 Finale</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="seva">Interested in Seva?</label>
+                        <select id="seva">
+                            <option>No, Just Attending</option>
+                            <option>Yes, Volunteer</option>
+                            <option>Yes, Prasad Seva</option>
+                            <option>Yes, Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="howHeard">How did you hear?</label>
+                        <select id="howHeard">
+                            <option value="">Select...</option>
+                            <option>Social Media</option>
+                            <option>WhatsApp</option>
+                            <option>Friend/Family</option>
+                            <option>Poster</option>
+                            <option>Website</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Special Requirements</label>
+                    <textarea id="message" rows="3" placeholder="Accessibility needs, etc."></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn-submit">
+                        🙏 Register Now — Jai Shri Ram
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+async function handleSubmit(event) {
+
+event.preventDefault();
+
+/* PASTE YOUR GOOGLE APPS SCRIPT URL HERE */
+const scriptURL = "https://script.google.com/macros/s/AKfycbw8zGarevkkwyQv0uWsJcFHxN24Ik04s3jJMUUAPyF6my00unPoaTbkeKUM31ZWx_QMmg/exec";
+
+const formData = {
+firstName: document.getElementById("firstName").value,
+lastName: document.getElementById("lastName").value,
+email: document.getElementById("email").value,
+phone: document.getElementById("phone").value,
+city: document.getElementById("city").value,
+members: document.getElementById("members").value,
+days: document.getElementById("daysSelect").value,
+seva: document.getElementById("seva").value,
+howHeard: document.getElementById("howHeard").value,
+message: document.getElementById("message").value
+};
+
+try {
+
+const response = await fetch(scriptURL, {
+method: "POST",
+body: JSON.stringify(formData)
+});
+
+alert("🙏 Registration Successful! Jai Shri Ram");
+
+document.getElementById("registrationForm").reset();
+
+}
+catch(error) {
+
+alert("Submission failed. Please try again.");
+
+}
+
+}
+
+</script>
+	
 </body>
 </html>
-
-
-
