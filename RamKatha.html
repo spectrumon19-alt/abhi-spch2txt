@@ -703,7 +703,38 @@
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-		
+	
+
+
+
+    <!-- ===== organizer tooltip===== -->
+
+
+.social-icon{
+    position: relative;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.tooltip{
+    visibility: hidden;
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.social-icon:hover .tooltip{
+    visibility: visible;
+}
+
+	
 		
     </style>
 </head>
@@ -878,7 +909,7 @@ Chant Sitaram Sitaram | Chant Sitaram Sitaram |
 						<a href="https://www.facebook.com/pujyarajanjee" target="_blank" rel="noopener" class="visit-link">🌐 Facebook </a>
 						<a href="https://www.youtube.com/@PujyaRajanJee/" target="_blank" rel="noopener" class="visit-link">🌐 youtube </a>
 						<a href="https://www.instagram.com/pujya_rajan_jee" target="_blank" rel="noopener" class="visit-link">🌐 Instagram</a>-->
-						
+						<div class="footer-social"><a href="https://www.facebook.com/pujyarajanjee" class="social-icon">📘</a><a href="https://www.youtube.com/@PujyaRajanJee/" class="social-icon">▶️</a><a href="https://www.instagram.com/pujya_rajan_jee" class="social-icon">📷</a></div>
 						
 						
 						
@@ -1093,6 +1124,24 @@ Chant Sitaram Sitaram | Chant Sitaram Sitaram |
                     <div class="organizer-avatar">🙏</div>
                     <h3>Sailesh & Team </h3>
                     <p class="org-role">Chief Organizer </p>
+					
+					
+
+
+
+<div class="footer-social">
+    <a href="https://www.youtube.com/@sdivyachetna" class="social-icon">
+        ▶️
+        <span class="tooltip">Visit Divya Chetna @ YouTube</span>
+    </a>
+</div>
+
+
+
+
+
+
+
                 </div>
                 <div class="organizer-right">
                     <h4>A Labour of Love & Devotion</h4>
@@ -1745,5 +1794,4 @@ alert("Submission failed. Please try again.");
     </script>
 
 </body>
-
 </html>
