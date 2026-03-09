@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abhi Grammar Online Exam</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f9;
+}
+header{
+  position:sticky;
+  top:0;
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+  text-align:center;
+  z-index:10;
+}
+.container{
+  max-width:950px;
+  margin:20px auto;
+  padding:10px;
+}
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+.blank-input{
+  width: 420px;
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #cbd5e1;
+  outline: none;
+  font-size: 15px;
+}
+.blank-input:focus{
+  border-color:#1e3a8a;
+}
+.long-answer{
+  width:100%;
+  min-height:70px;
+  padding:10px;
+  border-radius:8px;
+  border:2px solid #cbd5e1;
+  outline:none;
+  font-size:15px;
+  resize:vertical;
+}
+.long-answer:focus{
+  border-color:#1e3a8a;
+}
+.correctInput{
+  border-color:#16a34a !important;
+  background:#d4edda !important;
+}
+.wrongInput{
+  border-color:#dc2626 !important;
+  background:#f8d7da !important;
+}
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin:10px 5px;
+}
+.submit-btn{ background:#16a34a; color:white; }
+.reset-btn{ background:#dc2626; color:white; }
+#result{
+  font-weight:bold;
+  font-size:18px;
+  margin:15px 0;
+}
+.timer{ font-weight:bold; color:#facc15; }
+.smallNote{
+  color:#64748b;
+  font-size:13px;
+  margin-top:6px;
+}
+.answerBox{
+  margin-top:10px;
+  padding:10px;
+  background:#eef2ff;
+  border-radius:8px;
+  display:none;
+}
+/* Paragraph display (Section C) */
+.paraBox{
+  background:#fff7ed;
+  border-left:6px solid #f59e0b;
+  padding:12px 14px;
+  border-radius:10px;
+  margin:10px 0 15px 0;
+  box-shadow:0 2px 6px rgba(0,0,0,0.06);
+}
+.paraTitle{
+  font-weight:bold;
+  color:#9a3412;
+  margin-bottom:6px;
+}
+.paraToggle{
+  background:#fde68a;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:10px 0 8px 0;
+}
+.paraToggle:hover{
+  background:#fcd34d;
+}
+/* Section D Tabs */
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:10px 0 15px;
+}
+.tab-btn{
+  background:#e5e7eb;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.tab-btn.active{
+  background:#1e3a8a;
+  color:white;
+}
+.tab-content{ display:none; }
+.tab-content.active{ display:block; }
+/* Divider headings */
+h3{
+  margin-top:25px;
+  color:#0f172a;
+}
+hr{
+  border:none;
+  border-top:1px solid #e2e8f0;
+  margin:25px 0;
+}
+
+/* -------------------- NEW: Speech Topics Accordion UI -------------------- */
+.topicsHeaderRow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  margin-top:8px;
+}
+.topics-toggle-btn{
+  background:#facc15;
+  color:#0f172a;
+  font-weight:bold;
+}
+.topics-toggle-btn:hover{
+  filter:brightness(0.95);
+}
+#topicsSection{
+  display:none; /* toggled by button */
+}
+.topicsCard{
+  background:#ffffff;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+.topicsCard h3{
+  margin-top:0;
+}
+.topicsAccordion details{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  margin:10px 0;
+  overflow:hidden;
+  background:#f8fafc;
+}
+.topicsAccordion summary{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  font-weight:bold;
+  background:#eef2ff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.topicsAccordion summary::-webkit-details-marker{ display:none; }
+.topicsAccordion summary .chev{
+  background:#1e3a8a;
+  color:white;
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  border-radius:8px;
+  font-size:14px;
+  transform:rotate(0deg);
+  transition:transform .2s ease;
+}
+.topicsAccordion details[open] summary .chev{
+  transform:rotate(180deg);
+}
+.topicsAccordion .topicBody{
+  padding:12px 14px 14px;
+  color:#0f172a;
+  line-height:1.6;
+  background:#ffffff;
+}
+.topicsTools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:10px 0 0;
+}
+.topicsTools button{
+  margin:0;
+  background:#1e3a8a;
+  color:white;
+  font-weight:bold;
+}
+.topicsTools button.secondary{
+  background:#64748b;
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h2>Abhi Grammar Online Exam</h2>
+  <div class="timer">Time Left: <span id="time">30:00</span></div>
+
+  <!-- NEW: Toggle button in header (does not affect existing exam) -->
+  <div class="topicsHeaderRow">
+    <button id="toggleTopicsBtn" class="topics-toggle-btn">📚 Open Speech Topics</button>
+  </div>
+</header>
+
+<!-- NEW: Speech Topics Section (hidden/shown on button click) -->
+<div id="topicsSection">
+  <div class="container">
+    <div class="topicsCard">
+      <h3>Speech Topics (Hide / Show)</h3>
+      <div class="smallNote">
+        Click any topic to expand/collapse. This section is independent from the exam.
+      </div>
+
+      <div class="topicsTools">
+        <button type="button" id="expandAllTopics">Expand All</button>
+        <button type="button" class="secondary" id="collapseAllTopics">Collapse All</button>
+      </div>
+
+      <div class="topicsAccordion" id="topicsAccordion">
+
+        <details>
+          <summary>
+            <span>1) Terrorism</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            Good morning everyone. Today I want to speak about terrorism. Terrorism is one of the biggest threats to humanity.
+            It spreads fear, hatred and violence in society. Innocent people lose their lives because of selfish and cruel motives.
+            Terrorism not only destroys lives but also affects the economy and peace of a country. We must stand united against it.
+            Education, awareness and strong security measures are important to fight terrorism. As responsible citizens, we should promote
+            love, harmony and brotherhood. Only unity and understanding can defeat terrorism and create a peaceful world.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>2) Describe the Scene of a Village</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            A village is a place full of natural beauty and peace. Early in the morning, we can see farmers going to the fields with their cattle.
+            The air is fresh and pollution-free. There are green fields, small huts and trees all around. Children play happily in open grounds.
+            People in villages live a simple life and help each other in times of need. Birds chirp and the sound of flowing water makes the atmosphere calm.
+            Life in a village is slow but peaceful. It teaches us simplicity and closeness to nature.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>3) Pollution</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            Pollution is a serious problem in today’s world. It affects our air, water and land. Due to factories, vehicles and plastic waste, pollution is increasing day by day.
+            It causes many health problems like asthma and other diseases. Rivers are becoming dirty and animals are also suffering. If we do not control pollution now, future generations
+            will face serious consequences. We should plant more trees, reduce plastic use and follow proper waste management. Public awareness and strict laws are necessary.
+            It is our responsibility to protect the environment and keep our Earth clean.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>4) Importance of a Good Education</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            Education is the key to success in life. A good education not only gives us knowledge but also teaches values and discipline.
+            It helps us to develop confidence and improve our personality. Through education, we can get better job opportunities and improve our standard of living.
+            It also makes us responsible citizens of the country. An educated person can differentiate between right and wrong. Education removes ignorance and poverty from society.
+            Therefore, every child should get quality education. It is the foundation for a bright future and a strong nation.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>5) How Can Air Pollution Be Reduced</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            Air pollution is increasing rapidly, especially in cities. To reduce air pollution, we must take proper steps. First, we should use public transport, carpooling
+            or bicycles instead of private vehicles. Planting more trees is very important because trees purify the air. Industries should follow strict pollution control rules.
+            We must reduce burning of garbage and crackers. Using renewable energy like solar and wind power can also help. Public awareness campaigns should be conducted regularly.
+            If everyone takes small steps, together we can reduce air pollution and create a healthier environment.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>6) Describe the Scene of a School</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            A school is a place of learning and growth. In the morning, students arrive in neat uniforms with happy faces. The assembly ground is filled with prayer and national anthem.
+            Classrooms are lively with teachers explaining lessons and students listening carefully. During recess, children play and enjoy with friends. The sound of laughter fills the air.
+            Teachers guide students not only in studies but also in discipline and values. Notice boards are decorated with charts and drawings.
+            A school shapes our future and builds strong character in students.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>7) Your First Travel Experience</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            My first travel experience was very exciting and memorable. I travelled by train with my family to a hill station. It was my first long journey.
+            I was amazed to see different landscapes, rivers and mountains through the window. The cool breeze and beautiful scenery made me very happy.
+            We visited many tourist places and tasted local food. I learned how to adjust and manage things during travel. That journey gave me confidence and many beautiful memories.
+            It was truly a wonderful experience which I will always cherish.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>8) Describe the Scene of a Zoo</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            A zoo is a place where we can see different animals and birds. When I visited a zoo, I saw lions, tigers, elephants and many colourful birds.
+            Children were very excited and clicking photos. The monkeys were jumping from one tree to another. The roar of the lion attracted everyone’s attention.
+            There were clean pathways and information boards about animals. The zoo helps us learn about wildlife and the importance of protecting animals.
+            It is both educational and entertaining. Visiting a zoo is always a joyful experience.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>9) Science – A Curse or a Boon</span>
+            <span class="chev">⌄</span>
+          </summary>
+          <div class="topicBody">
+            Science is a great blessing for humanity. It has made our life comfortable and advanced. Due to science, we have electricity, medicines, transportation and communication facilities.
+            Doctors can cure serious diseases with advanced technology. However, science can also become a curse if misused. Nuclear weapons and environmental damage are examples of its misuse.
+            So, science itself is not bad, but its use depends on humans. If used wisely, science is a boon. Therefore, we must use scientific knowledge for the welfare and progress of society.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>
+
+<div class="container">
+  <div id="result"></div>
+  <div id="exam"></div>
+  <hr />
+
+  <!-- Section D Container -->
+  <div id="sectionD">
+    <h3>Section D: Correct the Sentence (Write Full Sentence) — 50 Questions</h3>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab(0)">1–10</button>
+      <button class="tab-btn" onclick="showTab(1)">11–20</button>
+      <button class="tab-btn" onclick="showTab(2)">21–30</button>
+      <button class="tab-btn" onclick="showTab(3)">31–40</button>
+      <button class="tab-btn" onclick="showTab(4)">41–50</button>
+    </div>
+    <div id="examD"></div>
+  </div>
+
+  <button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+  <button class="reset-btn" onclick="location.reload()">Retake</button>
+</div>
+
+<script>
+// -------------------------- Normalization (robust checking) --------------------------
+function normalize(txt){
+  return (txt || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[-–—]/g," ")          // hyphen as space
+    .replace(/[.,!?;:"()]/g,"")     // remove punctuation
+    .replace(/'/g,"")               // remove apostrophes
+    .replace(/\s+/g," ");           // collapse spaces
+}
+function isCorrect(userInput, acceptedAnswers){
+  const u = normalize(userInput);
+  return acceptedAnswers.some(a => normalize(a) === u);
+}
+
+// -------------------------- Section A/B/C Questions (single input) --------------------------
+const questions = []; // A + B + C
+
+// ---------- Section A (25 Fill in the blanks) ----------
+const replaceQuestions = [
+  ["She is suffering from ____ fever.",["a"]],
+  ["They are waiting ____ the entrance.",["at"]],
+  ["I will return ____ 10 minutes.",["in"]],
+  ["He lives ____ Delhi.",["in"]],
+  ["The book is ____ the table.",["on"]],
+  ["She arrived ____ the station.",["at"]],
+  ["He apologized ____ his mistake.",["for"]],
+  ["She is good ____ English.",["at"]],
+  ["He insisted ____ paying.",["on"]],
+  ["I am interested ____ music.",["in"]],
+  ["She is afraid ____ dogs.",["of"]],
+  ["He is proud ____ his son.",["of"]],
+  ["The meeting is ____ Monday.",["on"]],
+  ["She was born ____ 2005.",["in"]],
+  ["He depends ____ his parents.",["on"]],
+  ["She is married ____ a doctor.",["to"]],
+  ["He is fond ____ cricket.",["of"]],
+  ["She smiled ____ me.",["at"]],
+  ["He divided cake ____ two parts.",["into"]],
+  ["She prefers tea ____ coffee.",["to"]],
+  ["The train arrived ____ time.",["on"]],
+  ["He succeeded ____ passing.",["in"]],
+  ["She complained ____ noise.",["about"]],
+  ["He believes ____ hard work.",["in"]],
+  ["I agree ____ you.",["with"]]
+];
+replaceQuestions.forEach(q=>{
+  questions.push({ section:"Section A: Fill in the blanks", type:"short", q:q[0], answer:q[1] });
+});
+
+// ---------- Section B (25 Fill blanks - corrected sentence style) ----------
+const correctQuestions = [
+  ["She ____ like coffee.",["doesn't","does not","doesnt"]],
+  ["He ____ completed work.",["has"]],
+  ["Did he ____ test?",["write"]],
+  ["The book is ____ the table.",["on"]],
+  ["Between you and ____.",["her"]],
+  ["They ____ waiting.",["were"]],
+  ["He ____ on father.",["depends"]],
+  ["She is married ____ doctor.",["to"]],
+  ["I will return ____ 5 minutes.",["in"]],
+  ["He is good ____ maths.",["at"]],
+  ["She arrived ____ airport.",["at"]],
+  ["He apologized ____ mistake.",["for"]],
+  ["Meeting is ____ Monday.",["on"]],
+  ["She was born ____ 2000.",["in"]],
+  ["He insisted ____ paying.",["on"]],
+  ["She is afraid ____ dog.",["of"]],
+  ["I am ____ in music.",["interested"]],
+  ["He borrowed money ____ me.",["from"]],
+  ["Train arrived ____ time.",["on"]],
+  ["She congratulated him ____ success.",["on"]],
+  ["He is tired ____ work.",["of"]],
+  ["She is capable ____ doing this.",["of"]],
+  ["He is ____ of son.",["proud"]],
+  ["She is different ____ sister.",["from"]],
+  ["I will be back ____ 10 minutes.",["in"]]
+];
+correctQuestions.forEach(q=>{
+  questions.push({ section:"Section B: Fill in the blanks (Correct sentence)", type:"short", q:q[0], answer:q[1] });
+});
+
+// ---------- Section C (Paragraph Based) with Expand/Collapse paragraph ----------
+const paraTextMap = {
+  "Section C1: Paragraph 1 – Ron (Art Gallery)":
+  "Your name is Ron. You are 42 years old. You are excited because you are going to visit a new art gallery today. Your hobby is painting and studying the work of different artists in school. Your favorite subject was art. However, you have never been fond of books.",
+  "Section C2: Paragraph 2 – Vacation & Projects":
+  "You plan to go on a two week vacation to Canada next month, you plan to hand over two of your pending projects to your colleague Mark. You are in discussion with your manager Sarah. Join the conversation by giving suitable one sentence replies to the questions.",
+  "Section C3: Paragraph 3 – Alisha":
+  "Your name is Alisha. You are 31 years old. You woke up in a good mood because you are going to meet your friends today. You enjoy reading books, especially books about science in school. Your favorite subjects were science and geography. But you like science the most.",
+  "Section C4: Paragraph 4 – Pizza Order":
+  "Your name is Peter. You wish to place an order for home delivery for a large pepperoni pizza and one bottle of juice, you will pay in cash. Join the conversation by giving suitable one sentence replies to the questions, Hi, this is pizza drill.",
+  "Section C5: Paragraph 5 – Sam":
+  "Your name is Sam. You were born in Sydney. In high school, you became interested in law. After graduation, you studied at the Ilt Law Institute. You are happy today because you are going to play a volleyball match with your friends, although you plan to play another match this weekend, you usually prefer to spend your free time at home playing video games.",
+  "Section C6: Paragraph 6 – Paris Trip":
+  "You are going to Paris for a week's vacation with your best friend. This is your first trip to Paris. You plan to visit the Eiffel Tower and the cathedral. On the flight, a fellow passenger starts a conversation with you. Join the conversation by giving suitable one sentence replies to the questions."
+};
+
+function pushParaSection(sec, qaPairs){
+  qaPairs.forEach(pair=>{
+    questions.push({
+      section: sec,
+      type: "short",               // still textbox
+      paraText: paraTextMap[sec],  // paragraph shown once per section
+      q: pair[0],
+      answer: pair[1]
+    });
+  });
+}
+
+pushParaSection("Section C1: Paragraph 1 – Ron (Art Gallery)", [
+  ["What is your name?", ["My name is Ron."]],
+  ["What was your favorite subject in school?", ["My favorite subject in school was art."]],
+  ["How are you feeling today?", ["I am feeling excited today because I am going to visit a new art gallery."]]
+]);
+
+pushParaSection("Section C2: Paragraph 2 – Vacation & Projects", [
+  ["So you're planning on taking a vacation.", ["Yes, I am planning to take a two-week vacation to Canada next month."]],
+  ["Where are you heading to?", ["I am heading to Canada for a two-week vacation next month."]],
+  ["And how long would it be for?", ["It will be for two weeks."]],
+  ["Do you have any project pending?", ["Yes, I have two pending projects that I plan to hand over to my colleague Mark before I leave."]],
+  ["Can you tell me who will be working on them in your absence?", ["In my absence, my colleague Mark will be working on the two projects."]],
+  ["Okay, let's find them. You can send me an email with details of the projects that you are working on.",
+   ["Sure, I will send you an email with all the details of the projects I am currently working on."]]
+]);
+
+pushParaSection("Section C3: Paragraph 3 – Alisha", [
+  ["What is your age?", ["I am 31 years old."]],
+  ["Do you like reading books?", ["Yes, I enjoy reading books, especially books about science."]],
+  ["How are you feeling today?", ["I am feeling happy today because I am going to meet my friends."]]
+]);
+
+pushParaSection("Section C4: Paragraph 4 – Pizza Order", [
+  ["Would you like to order for pickup or delivery?", ["I would like to place an order for home delivery, please."]],
+  ["Can I have your name please?", ["My name is Peter."]],
+  ["Okay, what would you like?", ["I would like to order a large pepperoni pizza and one bottle of juice, please."]],
+  ["Okay, are you paying by card or cash?", ["I will be paying in cash."]]
+]);
+
+pushParaSection("Section C5: Paragraph 5 – Sam", [
+  ["Where were you born?", ["I was born in Sydney."]],
+  ["What is your favorite sport?", ["My favorite sport is volleyball because I enjoy playing matches with my friends."]],
+  ["What is one thing you do on weekends?", ["One thing I do on weekends is play volleyball with my friends."]]
+]);
+
+pushParaSection("Section C6: Paragraph 6 – Paris Trip", [
+  ["Is this your first visit to Paris?", ["Yes, this is my first visit to Paris."]],
+  ["Are you traveling with someone?", ["Yes, I am traveling with my best friend."]],
+  ["How long are you staying?", ["I am staying in Paris for one week."]],
+  ["What do you plan to do in Paris?", ["I plan to visit the Eiffel Tower and explore the famous cathedral in Paris."]]
+]);
+
+// -------------------------- Render A/B/C --------------------------
+const examDiv = document.getElementById("exam");
+let currentSection = "";
+
+function safeIdFromSection(sec){
+  return "para_" + sec.replace(/[^\w]+/g,"_");
+}
+function togglePara(id, btn){
+  const box = document.getElementById(id);
+  if(box.style.display === "none"){
+    box.style.display = "block";
+    btn.textContent = "📕 Hide Paragraph";
+  }else{
+    box.style.display = "none";
+    btn.textContent = "📘 Show Paragraph";
+  }
+}
+
+questions.forEach((q,i)=>{
+  if(q.section !== currentSection){
+    currentSection = q.section;
+    examDiv.innerHTML += `<h3>${currentSection}</h3>`;
+    // Expand/Collapse paragraph only when paraText exists (Section C)
+    if(q.paraText){
+      const pid = safeIdFromSection(currentSection);
+      examDiv.innerHTML += `
+        <button class="paraToggle" onclick="togglePara('${pid}', this)">📘 Show Paragraph</button>
+        <div class="paraBox" id="${pid}" style="display:none;">
+          <div class="paraTitle">Paragraph</div>
+          <div>${q.paraText}</div>
+        </div>
+      `;
+    }
+  }
+
+  // Input textbox for Section A/B/C
+  examDiv.innerHTML += `
+    <div class="card">
+      <p><b>Q${i+1}.</b> ${q.q}</p>
+      <input class="blank-input" type="text" id="q${i}" placeholder="Type your answer..." autocomplete="off" />
+      <div class="smallNote">Tip: Checked ignoring CAPS/spaces/punctuation.</div>
+      <div class="answerBox" id="answer${i}"></div>
+    </div>
+  `;
+});
+
+// -------------------------- Section D (50 Full-sentence corrections in 5 tabs) --------------------------
+const dataD = [
+  ["They is waiting outside.","They are waiting outside."],
+  ["She don’t like chocolate.","She doesn’t like chocolate."],
+  ["He have completed his work.","He has completed his work."],
+  ["I will return at one hour.","I will return in one hour."],
+  ["She is suffering from terrible pain.","She is suffering from terrible pain."],
+  ["Between you and she, this is secret.","Between you and her, this is secret."],
+  ["He lives at Mumbai.","He lives in Mumbai."],
+  ["The book is in the table.","The book is on the table."],
+  ["Did he went to school yesterday?","Did he go to school yesterday?"],
+  ["She is good in dancing.","She is good at dancing."],
+  ["They gave his vote to another candidate.","They gave their vote to another candidate."],
+  ["The distance among my home and office is short.","The distance between my home and office is short."],
+  ["He insisted to pay the bill.","He insisted on paying the bill."],
+  ["I am interesting in sports.","I am interested in sports."],
+  ["She arrived to the airport early.","She arrived at the airport early."],
+  ["He apologized of his mistake.","He apologized for his mistake."],
+  ["The meeting is in Monday.","The meeting is on Monday."],
+  ["She was born on 2005.","She was born in 2005."],
+  ["He depend on his brother.","He depends on his brother."],
+  ["She is married with a doctor.","She is married to a doctor."],
+  ["He is fond in music.","He is fond of music."],
+  ["She is afraid from snakes.","She is afraid of snakes."],
+  ["I agree to you.","I agree with you."],
+  ["He is responsible of the project.","He is responsible for the project."],
+  ["She smiled to me.","She smiled at me."],
+  ["He borrowed money from me yesterday?","He borrowed money from me yesterday."],
+  ["The train arrived in time.","The train arrived on time."],
+  ["She congratulated him for his success?","She congratulated him on his success."],
+  ["He is tired from work.","He is tired of work."],
+  ["She is capable to do this.","She is capable of doing this."],
+  ["He is proud for his son.","He is proud of his son."],
+  ["They arrived in the station late.","They arrived at the station late."],
+  ["She complained for the noise.","She complained about the noise."],
+  ["He succeeded to pass the exam.","He succeeded in passing the exam."],
+  ["She is different than her sister.","She is different from her sister."],
+  ["I am waiting your answer.","I am waiting for your answer."],
+  ["He divided the cake in two parts.","He divided the cake into two parts."],
+  ["She prefers tea than coffee.","She prefers tea to coffee."],
+  ["The cat is hiding under the bed?","The cat is hiding under the bed."],
+  ["They discussed about the issue.","They discussed the issue."],
+  ["She is angry on him.","She is angry with him."],
+  ["He believes on luck.","He believes in luck."],
+  ["She is excited for the party.","She is excited about the party."],
+  ["We arrived to the hotel.","We arrived at the hotel."],
+  ["He is married to his friend since five years.","He has been married to his friend for five years."],
+  ["She don’t understands the lesson.","She doesn’t understand the lesson."],
+  ["These is my pen.","This is my pen."],
+  ["He write the test yesterday.","He wrote the test yesterday."],
+  ["The project was dash because of rain.","The project was delayed because of rain."],
+  ["I will be back at ten minutes.","I will be back in ten minutes."]
+];
+
+const examD = document.getElementById("examD");
+for(let t=0; t<5; t++){
+  const div = document.createElement("div");
+  div.className = "tab-content" + (t===0 ? " active" : "");
+  div.id = "tab" + t;
+
+  for(let i=t*10; i<(t+1)*10; i++){
+    div.innerHTML += `
+      <div class="card">
+        <p><b>D${i+1}.</b> Correct this sentence:<br><i>${dataD[i][0]}</i></p>
+        <textarea class="long-answer" id="d${i}" placeholder="Write the correct sentence..."></textarea>
+        <div class="smallNote">Tip: Write full correct sentence.</div>
+        <div class="answerBox" id="da${i}"></div>
+      </div>
+    `;
+  }
+  examD.appendChild(div);
+}
+function showTab(n){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("tab"+n).classList.add("active");
+  document.querySelectorAll(".tab-btn")[n].classList.add("active");
+}
+
+// -------------------------- Submit Exam (Grades A+B+C + D) --------------------------
+function submitExam(){
+  let scoreABC = 0;
+  let scoreD = 0;
+
+  // Grade A/B/C
+  questions.forEach((q,i)=>{
+    const input = document.getElementById("q"+i);
+    input.disabled = true;
+
+    if(isCorrect(input.value, q.answer)){
+      scoreABC++;
+      input.classList.add("correctInput");
+    }else{
+      input.classList.add("wrongInput");
+    }
+    const ansBox = document.getElementById("answer"+i);
+    ansBox.style.display = "block";
+    ansBox.innerHTML = `<b>Correct Answer:</b> ${q.answer.join(" / ")}`;
+  });
+
+  // Grade D
+  for(let i=0; i<dataD.length; i++){
+    const t = document.getElementById("d"+i);
+    t.disabled = true;
+
+    if(isCorrect(t.value, [dataD[i][1]])){
+      scoreD++;
+      t.classList.add("correctInput");
+    }else{
+      t.classList.add("wrongInput");
+    }
+
+    const a = document.getElementById("da"+i);
+    a.style.display = "block";
+    a.innerHTML = `<b>Correct Answer:</b> ${dataD[i][1]}`;
+  }
+
+  const total = questions.length + dataD.length;
+  const score = scoreABC + scoreD;
+  const percent = Math.round((score/total)*100);
+  const msg = percent>=90 ? "Excellent! 🌟" : percent>=70 ? "Good Job 👍" : "Keep Practicing 💪";
+
+  document.getElementById("result").innerHTML =
+    `Total Score: ${score}/${total} (${percent}%) — ${msg}
+     <br><span style="font-size:14px;color:#475569;">
+     Section A+B+C: ${scoreABC}/${questions.length} &nbsp;|&nbsp; Section D: ${scoreD}/50
+     </span>`;
+}
+
+// -------------------------- Timer (30 minutes) --------------------------
+let totalTime = 1800; // 30 min
+const timer = document.getElementById("time");
+const countdown = setInterval(()=>{
+  const m = Math.floor(totalTime/60);
+  const s = totalTime%60;
+  timer.textContent = `${m}:${s<10?'0'+s:s}`;
+  totalTime--;
+  if(totalTime < 0){
+    clearInterval(countdown);
+    submitExam();
+  }
+}, 1000);
+
+// -------------------------- NEW: Speech Topics Toggle + Expand/Collapse --------------------------
+const toggleTopicsBtn = document.getElementById("toggleTopicsBtn");
+const topicsSection = document.getElementById("topicsSection");
+const topicsAccordion = document.getElementById("topicsAccordion");
+
+toggleTopicsBtn.addEventListener("click", () => {
+  const isHidden = (topicsSection.style.display === "none" || topicsSection.style.display === "");
+  if(isHidden){
+    topicsSection.style.display = "block";
+    toggleTopicsBtn.textContent = "❌ Close Speech Topics";
+    window.scrollTo({ top: topicsSection.offsetTop - 10, behavior: "smooth" });
+  }else{
+    topicsSection.style.display = "none";
+    toggleTopicsBtn.textContent = "📚 Open Speech Topics";
+  }
+});
+
+document.getElementById("expandAllTopics").addEventListener("click", () => {
+  topicsAccordion.querySelectorAll("details").forEach(d => d.open = true);
+});
+document.getElementById("collapseAllTopics").addEventListener("click", () => {
+  topicsAccordion.querySelectorAll("details").forEach(d => d.open = false);
+});
+</script>
+
+</body>
+</html>
