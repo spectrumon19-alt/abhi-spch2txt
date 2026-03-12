@@ -147,6 +147,20 @@
       <button id="downloadBtn" disabled>Download (.txt)</button>
       <button id="clearBtn">Clear</button>
     </div>
+	
+	
+	<div class="controls" role="toolbar" aria-label="Transcription controls">
+
+    <!-- Page Dropdown -->
+    <select class="controls" onchange="goToPage(this.value)">
+        <option value="">Select Page</option>
+        <option value="v2.html">Page 1</option>
+        <option value="v_3.html">Page 2</option>
+        <option value="index.html">base</option>
+    </select>
+
+</div>
+	
 
     <div id="alerts" class="alerts" aria-live="assertive"></div>
 
@@ -326,6 +340,12 @@
   initRecognition();
   setStatus('Idle', false);
 })();
+
+function goToPage(page) {
+    if (page) {
+        window.location.href = page;
+    }
+}
 </script>
 </body>
 </html>
