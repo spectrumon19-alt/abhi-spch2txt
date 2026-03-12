@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Notes - Live Transcription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.4);
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --interim: #64748b;
+            --border: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 16px;
+            gap: 16px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .lang-select {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+
+        .lang-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #0891b2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--error), #dc2626);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-secondary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mic-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mic-icon {
+            position: relative;
+            font-size: 1.5rem;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            opacity: 0;
+        }
+
+        .recording .pulse-ring {
+            animation: pulse 1.5s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .status-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-text.listening {
+            color: var(--success);
+        }
+
+        .status-text.stopped {
+            color: var(--text-secondary);
+        }
+
+        .status-text.error {
+            color: var(--error);
+        }
+
+        .session-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .session-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 0;
+        }
+
+        .transcript-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .transcript-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .transcript-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .word-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .transcript-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .transcript-entry {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .transcript-timestamp {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .transcript-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .interim-text {
+            color: var(--interim);
+            font-style: italic;
+        }
+
+        .interim-container {
+            padding: 16px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 10px;
+            border: 1px dashed var(--accent);
+            margin-top: 12px;
+        }
+
+        .interim-label {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 3px;
+        }
+
+        .typing-dots span {
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .alert-error {
+            background: linear-gradient(135deg, var(--error), #dc2626);
+            color: white;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            color: white;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .session-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .transcript-area {
+                padding: 12px;
+            }
+
+            .action-buttons {
+                width: 100%;
+            }
+
+            .action-buttons .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .lang-select {
+                width: 100%;
+            }
+
+            .btn-primary, .btn-danger {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">📝</span>
+                <div class="logo-text">
+                    <h1>Meeting Notes</h1>
+                    <p>Live Speech Transcription</p>
+                </div>
+            </div>
+            <div class="controls">
+                <select id="langSelect" class="lang-select" aria-label="Select language">
+                    <option value="en-US">English (US)</option>
+                    <option value="en-GB">English (UK)</option>
+                    <option value="hi-IN">Hindi (हिन्दी)</option>
+                </select>
+                <button id="startBtn" class="btn btn-primary" aria-label="Start recording">
+                    <span>🎙️</span> Start Recording
+                </button>
+                <button id="stopBtn" class="btn btn-danger hidden" aria-label="Stop recording">
+                    <span>⏹️</span> Stop Recording
+                </button>
+            </div>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-left">
+                <div class="mic-indicator" id="micIndicator">
+                    <div class="mic-icon">
+                        <span>🎤</span>
+                        <div class="pulse-ring"></div>
+                    </div>
+                    <span class="status-text stopped" id="statusText">Ready to record</span>
+                </div>
+            </div>
+            <div class="session-info">
+                <span>⏱️ <span id="duration">00:00:00</span></span>
+                <span>📊 <span id="wordCount">0</span> words</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="transcript-container">
+                <div class="transcript-header">
+                    <div class="transcript-title">
+                        <span>📜</span>
+                        <span>Transcript</span>
+                        <span class="word-count" id="entryCount">0 entries</span>
+                    </div>
+                </div>
+                <div class="transcript-area" id="transcriptArea">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-state-icon">🎙️</div>
+                        <h3>Ready to Transcribe</h3>
+                        <p>Click "Start Recording" to begin transcribing your meeting. Speak clearly for best results.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="downloadBtn" class="btn btn-secondary" disabled aria-label="Download transcript">
+                    <span>📥</span> Download .txt
+                </button>
+                <button id="clearBtn" class="btn btn-secondary" disabled aria-label="Clear transcript">
+                    <span>🗑️</span> Clear All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Check browser support
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                showAlert('Your browser does not support speech recognition. Please use Chrome, Edge, or Safari.', 'error');
+                document.getElementById('startBtn').disabled = true;
+                return;
+            }
+
+            // DOM Elements
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const langSelect = document.getElementById('langSelect');
+            const transcriptArea = document.getElementById('transcriptArea');
+            const emptyState = document.getElementById('emptyState');
+            const statusText = document.getElementById('statusText');
+            const micIndicator = document.getElementById('micIndicator');
+            const durationEl = document.getElementById('duration');
+            const wordCountEl = document.getElementById('wordCount');
+            const entryCountEl = document.getElementById('entryCount');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            // State
+            let recognition = null;
+            let isRecording = false;
+            let isStopping = false;
+            let transcripts = [];
+            let currentInterim = '';
+            let sessionStartTime = null;
+            let durationInterval = null;
+            let silenceTimeout = null;
+            let noSpeechCount = 0;
+
+            // Initialize Speech Recognition
+            function initRecognition() {
+                recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = langSelect.value;
+                recognition.maxAlternatives = 1;
+
+                recognition.onstart = function() {
+                    console.log('Recognition started');
+                    noSpeechCount = 0;
+                };
+
+                recognition.onresult = function(event) {
+                    clearTimeout(silenceTimeout);
+                    noSpeechCount = 0;
+                    
+                    let interimTranscript = '';
+                    let finalTranscript = '';
+
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const transcript = event.results[i][0].transcript;
+                        
+                        if (event.results[i].isFinal) {
+                            finalTranscript += transcript;
+                        } else {
+                            interimTranscript += transcript;
+                        }
+                    }
+
+                    if (finalTranscript) {
+                        finalTranscript = addPunctuation(finalTranscript);
+                        addTranscriptEntry(finalTranscript);
+                    }
+
+                    updateInterimDisplay(interimTranscript);
+                };
+
+                recognition.onerror = function(event) {
+                    console.error('Recognition error:', event.error);
+                    
+                    switch (event.error) {
+                        case 'not-allowed':
+                            showAlert('Microphone access denied. Please allow microphone permissions and try again.', 'error');
+                            stopRecording();
+                            break;
+                        case 'no-speech':
+                            noSpeechCount++;
+                            if (noSpeechCount > 3) {
+                                showAlert('No speech detected for a while. Make sure your microphone is working.', 'warning');
+                            }
+                            break;
+                        case 'network':
+                            showAlert('Network error. Please check your internet connection.', 'error');
+                            break;
+                        case 'audio-capture':
+                            showAlert('No microphone found. Please connect a microphone and try again.', 'error');
+                            stopRecording();
+                            break;
+                        case 'aborted':
+                            console.log('Recognition aborted');
+                            break;
+                        default:
+                            if (event.error !== 'aborted') {
+                                showAlert(`Recognition error: ${event.error}`, 'warning');
+                            }
+                    }
+                };
+
+                recognition.onend = function() {
+                    console.log('Recognition ended');
+                    
+                    // Auto-restart if still recording and not manually stopped
+                    if (isRecording && !isStopping) {
+                        console.log('Auto-restarting recognition...');
+                        try {
+                            recognition.start();
+                        } catch (e) {
+                            console.error('Failed to restart:', e);
+                            setTimeout(function() {
+                                if (isRecording && !isStopping) {
+                                    try {
+                                        recognition.start();
+                                    } catch (e2) {
+                                        console.error('Second restart attempt failed:', e2);
+                                        stopRecording();
+                                    }
+                                }
+                            }, 100);
+                        }
+                    }
+                };
+            }
+
+            // Add punctuation to transcript
+            function addPunctuation(text) {
+                text = text.trim();
+                if (!text) return text;
+
+                // Capitalize first letter
+                text = text.charAt(0).toUpperCase() + text.slice(1);
+
+                // Add period if no ending punctuation
+                const lastChar = text.charAt(text.length - 1);
+                if (!/[.!?।]$/.test(lastChar)) {
+                    text += '.';
+                }
+
+                return text;
+            }
+
+            // Add transcript entry
+            function addTranscriptEntry(text) {
+                if (!text.trim()) return;
+
+                const now = new Date();
+                const timestamp = formatTimestamp(now);
+                
+                const entry = {
+                    text: text,
+                    timestamp: timestamp,
+                    time: now
+                };
+
+                transcripts.push(entry);
+                renderTranscripts();
+                updateStats();
+            }
+
+            // Format timestamp
+            function formatTimestamp(date) {
+                return date.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
+            }
+
+            // Render all transcripts
+            function renderTranscripts() {
+                if (transcripts.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                emptyState.classList.add('hidden');
+                
+                let html = '';
+                transcripts.forEach(function(entry) {
+                    html += `
+                        <div class="transcript-entry">
+                            <div class="transcript-timestamp">🕐 ${entry.timestamp}</div>
+                            <div class="transcript-text">${escapeHtml(entry.text)}</div>
+                        </div>
+                    `;
+                });
+
+                // Add interim container if there's interim text
+                if (currentInterim) {
+                    html += `
+                        <div class="interim-container">
+                            <div class="interim-label">
+                                <span>Processing</span>
+                                <span class="typing-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                            <div class="transcript-text interim-text">${escapeHtml(currentInterim)}</div>
+                        </div>
+                    `;
+                }
+
+                transcriptArea.innerHTML = html;
+                scrollToBottom();
+            }
+
+            // Update interim display
+            function updateInterimDisplay(text) {
+                currentInterim = text;
+                if (transcripts.length > 0 || currentInterim) {
+                    renderTranscripts();
+                }
+            }
+
+            // Scroll to bottom
+            function scrollToBottom() {
+                transcriptArea.scrollTop = transcriptArea.scrollHeight;
+            }
+
+            // Update stats
+            function updateStats() {
+                const totalWords = transcripts.reduce(function(count, entry) {
+                    return count + entry.text.split(/\s+/).filter(Boolean).length;
+                }, 0);
+                
+                wordCountEl.textContent = totalWords;
+                entryCountEl.textContent = `${transcripts.length} ${transcripts.length === 1 ? 'entry' : 'entries'}`;
+                
+                downloadBtn.disabled = transcripts.length === 0;
+                clearBtn.disabled = transcripts.length === 0;
+            }
+
+            // Start recording
+            function startRecording() {
+                initRecognition();
+                recognition.lang = langSelect.value;
+                
+                isRecording = true;
+                isStopping = false;
+                noSpeechCount = 0;
+                sessionStartTime = new Date();
+
+                startBtn.classList.add('hidden');
+                stopBtn.classList.remove('hidden');
+                micIndicator.classList.add('recording');
+                statusText.textContent = 'Listening...';
+                statusText.className = 'status-text listening';
+                langSelect.disabled = true;
+
+                // Start duration timer
+                durationInterval = setInterval(updateDuration, 1000);
+
+                try {
+                    recognition.start();
+                } catch (e) {
+                    console.error('Failed to start recognition:', e);
+                    showAlert('Failed to start speech recognition. Please try again.', 'error');
+                    stopRecording();
+                }
+            }
+
+            // Stop recording
+            function stopRecording() {
+                isStopping = true;
+                isRecording = false;
+
+                if (recognition) {
+                    try {
+                        recognition.stop();
+                    } catch (e) {
+                        console.log('Recognition already stopped');
+                    }
+                    recognition = null;
+                }
+
+                clearInterval(durationInterval);
+                clearTimeout(silenceTimeout);
+
+                startBtn.classList.remove('hidden');
+                stopBtn.classList.add('hidden');
+                micIndicator.classList.remove('recording');
+                statusText.textContent = 'Recording stopped';
+                statusText.className = 'status-text stopped';
+                langSelect.disabled = false;
+
+                // Clear interim text
+                if (currentInterim) {
+                    currentInterim = '';
+                    renderTranscripts();
+                }
+            }
+
+            // Update duration display
+            function updateDuration() {
+                if (!sessionStartTime) return;
+                
+                const elapsed = Math.floor((new Date() - sessionStartTime) / 1000);
+                const hours = Math.floor(elapsed / 3600);
+                const minutes = Math.floor((elapsed % 3600) / 60);
+                const seconds = elapsed % 60;
+                
+                durationEl.textContent = 
+                    String(hours).padStart(2, '0') + ':' +
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+            }
+
+            // Download transcript
+            function downloadTranscript() {
+                if (transcripts.length === 0) return;
+
+                let content = 'MEETING TRANSCRIPT\n';
+                content += '='.repeat(50) + '\n\n';
+                content += 'Date: ' + new Date().toLocaleDateString() + '\n';
+                content += 'Language: ' + langSelect.options[langSelect.selectedIndex].text + '\n';
+                content += 'Duration: ' + durationEl.textContent + '\n';
+                content += 'Total Words: ' + wordCountEl.textContent + '\n';
+                content += '\n' + '='.repeat(50) + '\n\n';
+                content += 'TRANSCRIPT\n\n';
+
+                transcripts.forEach(function(entry) {
+                    content += `[${entry.timestamp}]\n${entry.text}\n\n`;
+                });
+
+                const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                const filename = 'meeting-notes-' + new Date().toISOString().slice(0, 19).replace(/:/g, '-') + '.txt';
+                
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                showAlert('Transcript downloaded successfully!', 'success');
+            }
+
+            // Clear all transcripts
+            function clearTranscripts() {
+                if (transcripts.length === 0) return;
+                
+                if (confirm('Are you sure you want to clear all transcripts? This cannot be undone.')) {
+                    transcripts = [];
+                    currentInterim = '';
+                    sessionStartTime = null;
+                    durationEl.textContent = '00:00:00';
+                    wordCountEl.textContent = '0';
+                    entryCountEl.textContent = '0 entries';
+                    
+                    emptyState.classList.remove('hidden');
+                    transcriptArea.innerHTML = '';
+                    transcriptArea.appendChild(emptyState);
+                    
+                    downloadBtn.disabled = true;
+                    clearBtn.disabled = true;
+                    
+                    showAlert('Transcript cleared.', 'success');
+                }
+            }
+
+            // Show alert
+            function showAlert(message, type) {
+                const existingAlerts = document.querySelectorAll('.alert');
+                existingAlerts.forEach(function(alert) {
+                    alert.remove();
+                });
+
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-' + type;
+                alert.textContent = message;
+                document.body.appendChild(alert);
+
+                setTimeout(function() {
+                    alert.style.animation = 'slideIn 0.3s ease reverse';
+                    setTimeout(function() {
+                        alert.remove();
+                    }, 300);
+                }, 5000);
+            }
+
+            // Escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Event listeners
+            startBtn.addEventListener('click', startRecording);
+            stopBtn.addEventListener('click', stopRecording);
+            downloadBtn.addEventListener('click', downloadTranscript);
+            clearBtn.addEventListener('click', clearTranscripts);
+
+            langSelect.addEventListener('change', function() {
+                if (isRecording) {
+                    // Restart with new language
+                    if (recognition) {
+                        try {
+                            recognition.stop();
+                        } catch (e) {}
+                    }
+                    initRecognition();
+                    recognition.lang = this.value;
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        console.error('Failed to restart with new language:', e);
+                    }
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+                    return;
+                }
+
+                if (e.key === ' ' || e.code === 'Space') {
+                    e.preventDefault();
+                    if (isRecording) {
+                        stopRecording();
+                    } else {
+                        startRecording();
+                    }
+                }
+            });
+
+            // Handle page visibility
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isRecording) {
+                    // Keep recording in background
+                    console.log('Page hidden, continuing recording...');
+                }
+            });
+
+            // Cleanup on unload
+            window.addEventListener('beforeunload', function(e) {
+                if (isRecording && transcripts.length > 0) {
+                    e.preventDefault();
+                    e.returnValue = 'You have unsaved transcript data. Are you sure you want to leave?';
+                }
+            });
+
+            // Initial stats update
+            updateStats();
+        })();
+    </script>
+</body>
+</html>
