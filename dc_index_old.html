@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दिव्य चेतना | Divya Chetna - Spiritual Awakening & Ayurvedic Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & ROOT ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --saffron: #FF6B00;
+            --deep-saffron: #E55A00;
+            --gold: #D4A017;
+            --gold-light: #F5D060;
+            --maroon: #800020;
+            --deep-maroon: #5C0015;
+            --cream: #FFF8F0;
+            --ivory: #FFFDF7;
+            --dark: #1A0A00;
+            --brown: #3E2723;
+            --green-ayur: #2E7D32;
+            --green-light: #4CAF50;
+            --green-dark: #1B5E20;
+            --teal: #00695C;
+            --purple: #4A148C;
+            --purple-light: #7B1FA2;
+            --orange-glow: rgba(255, 107, 0, 0.15);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 15px 60px rgba(0, 0, 0, 0.2);
+            --gradient-saffron: linear-gradient(135deg, #FF6B00, #FF8F00, #FFB300);
+            --gradient-gold: linear-gradient(135deg, #D4A017, #F5D060);
+            --gradient-maroon: linear-gradient(135deg, #800020, #B71C1C);
+            --gradient-green: linear-gradient(135deg, #1B5E20, #4CAF50);
+            --gradient-hero: linear-gradient(180deg, rgba(26,10,0,0.7) 0%, rgba(128,0,32,0.5) 50%, rgba(26,10,0,0.8) 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-saffron);
+            border-radius: 10px;
+        }
+
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1A0A00 0%, #000 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-om {
+            font-size: 5rem;
+            color: var(--gold);
+            animation: pulseOm 2s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(212,160,23,0.6);
+        }
+
+        .loader-text {
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+        .loader-mandala {
+            width: 120px;
+            height: 120px;
+            border: 3px solid transparent;
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            position: absolute;
+        }
+
+        .loader-mandala::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 3px solid transparent;
+            border-top-color: var(--saffron);
+            border-radius: 50%;
+            animation: spin 1s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseOm {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.8; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            padding: 15px 0;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 10, 0, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 8px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-saffron);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover .nav-logo-icon {
+            transform: rotate(20deg) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.6);
+        }
+
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-logo-text .hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .nav-logo-text .english {
+            font-family: 'Cinzel', serif;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold-light);
+            background: rgba(255, 107, 0, 0.1);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient-saffron);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 30px;
+        }
+
+        .nav-cta {
+            background: var(--gradient-saffron) !important;
+            color: white !important;
+            padding: 10px 25px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 10001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900"><defs><radialGradient id="g1" cx="50%25" cy="50%25" r="60%25"><stop offset="0%25" stop-color="%23FF6B00" stop-opacity="0.08"/><stop offset="100%25" stop-color="%231A0A00" stop-opacity="0"/></radialGradient><radialGradient id="g2" cx="20%25" cy="80%25" r="40%25"><stop offset="0%25" stop-color="%23D4A017" stop-opacity="0.06"/><stop offset="100%25" stop-color="%231A0A00" stop-opacity="0"/></radialGradient></defs><rect fill="%231A0A00" width="1440" height="900"/><rect fill="url(%23g1)" width="1440" height="900"/><rect fill="url(%23g2)" width="1440" height="900"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: repeating-conic-gradient(var(--gold) 0% 25%, transparent 0% 50%);
+            background-size: 60px 60px;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float-particle var(--duration) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-particle {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: var(--opacity); }
+            90% { opacity: var(--opacity); }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 0 20px;
+            max-width: 1000px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-om-symbol {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 60px rgba(212, 160, 23, 0.5);
+            animation: pulseOm 3s ease-in-out infinite;
+        }
+
+        .hero-sacred-line {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .hero-deity-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--saffron);
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero-divider {
+            width: 120px;
+            height: 2px;
+            background: var(--gradient-gold);
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .hero-divider::before {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            font-size: 0.8rem;
+            background: var(--dark);
+            padding: 0 10px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 0, 0.15);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            color: var(--gold-light);
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #FFD700, #FFA500);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-title-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .hero-subtitle-en {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 0 auto 15px;
+            line-height: 1.8;
+        }
+
+        .hero-subtitle-hi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 248, 240, 0.7);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 2;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-saffron);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold-light);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 160, 23, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 160, 23, 0.2);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 13px;
+            position: relative;
+        }
+
+        .scroll-mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 3px;
+            animation: scroll-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-dot {
+            0%, 100% { top: 8px; opacity: 1; }
+            50% { top: 20px; opacity: 0.3; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--orange-glow);
+            color: var(--saffron);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .section-title-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.3rem;
+            color: var(--saffron);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-saffron);
+            margin: 20px auto 0;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 8px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        .section-divider::before { left: -15px; }
+        .section-divider::after { right: -15px; }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #2E1503 0%, #4A2508 50%, #1A0A00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .about-image-content {
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .about-image-content .mandala {
+            font-size: 8rem;
+            opacity: 0.15;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 30s linear infinite;
+        }
+
+        .about-image-content .om-large {
+            font-size: 6rem;
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(212, 160, 23, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image-content p {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-float-card {
+            position: absolute;
+            background: white;
+            border-radius: 15px;
+            padding: 20px 25px;
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-float-card.card-1 {
+            top: -20px;
+            right: -20px;
+        }
+
+        .about-float-card.card-2 {
+            bottom: -20px;
+            left: -20px;
+        }
+
+        .about-float-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .about-float-icon.saffron { background: rgba(255, 107, 0, 0.1); }
+        .about-float-icon.green { background: rgba(46, 125, 50, 0.1); }
+
+        .about-float-text h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--brown);
+        }
+
+        .about-float-text p {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .about-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--brown);
+            margin-bottom: 20px;
+        }
+
+        .about-text .highlight {
+            color: var(--saffron);
+        }
+
+        .about-text > p {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: var(--cream);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .about-feature:hover {
+            background: var(--orange-glow);
+            transform: translateX(5px);
+        }
+
+        .about-feature-icon {
+            font-size: 1.3rem;
+        }
+
+        .about-feature span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--brown);
+        }
+
+        /* ===== PHILOSOPHY PILLARS ===== */
+        .pillars {
+            background: linear-gradient(180deg, var(--cream) 0%, #FFF5E6 100%);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+            transition: height 0.4s ease;
+        }
+
+        .pillar-card:nth-child(1)::before { background: var(--gradient-saffron); }
+        .pillar-card:nth-child(2)::before { background: linear-gradient(135deg, #1565C0, #42A5F5); }
+        .pillar-card:nth-child(3)::before { background: linear-gradient(135deg, #6A1B9A, #AB47BC); }
+        .pillar-card:nth-child(4)::before { background: var(--gradient-green); }
+
+        .pillar-card:hover::before {
+            height: 6px;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 20px;
+            transition: all 0.4s ease;
+        }
+
+        .pillar-card:nth-child(1) .pillar-icon {
+            background: rgba(255, 107, 0, 0.1);
+        }
+        .pillar-card:nth-child(2) .pillar-icon {
+            background: rgba(21, 101, 192, 0.1);
+        }
+        .pillar-card:nth-child(3) .pillar-icon {
+            background: rgba(106, 27, 154, 0.1);
+        }
+        .pillar-card:nth-child(4) .pillar-icon {
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .pillar-card:hover .pillar-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .pillar-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--brown);
+            margin-bottom: 8px;
+        }
+
+        .pillar-card .hindi-name {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.9rem;
+            color: var(--saffron);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== COURSES SECTION ===== */
+        .courses {
+            background: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .course-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .course-image {
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .course-card:nth-child(1) .course-image {
+            background: linear-gradient(135deg, #FF6B00, #FF9800);
+        }
+        .course-card:nth-child(2) .course-image {
+            background: linear-gradient(135deg, #1565C0, #1E88E5);
+        }
+        .course-card:nth-child(3) .course-image {
+            background: linear-gradient(135deg, #6A1B9A, #8E24AA);
+        }
+        .course-card:nth-child(4) .course-image {
+            background: linear-gradient(135deg, #2E7D32, #43A047);
+        }
+        .course-card:nth-child(5) .course-image {
+            background: linear-gradient(135deg, #C62828, #E53935);
+        }
+        .course-card:nth-child(6) .course-image {
+            background: linear-gradient(135deg, #00695C, #00897B);
+        }
+
+        .course-image-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-image-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-body {
+            padding: 25px;
+        }
+
+        .course-body h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--brown);
+            margin-bottom: 5px;
+        }
+
+        .course-body .course-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.85rem;
+            color: var(--saffron);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .course-body p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .course-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+
+        .course-price .original {
+            font-size: 0.85rem;
+            color: #aaa;
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 5px;
+        }
+
+        .course-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            margin: 0 25px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--saffron);
+            color: var(--saffron);
+        }
+
+        .course-btn:hover {
+            background: var(--saffron);
+            color: white;
+        }
+
+        /* ===== AYURVEDIC PRODUCTS ===== */
+        .products {
+            background: linear-gradient(180deg, #F0F7F0 0%, #E8F5E9 50%, #F0F7F0 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .product-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:nth-child(1) .product-image {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+        }
+        .product-card:nth-child(2) .product-image {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+        }
+        .product-card:nth-child(3) .product-image {
+            background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+        }
+        .product-card:nth-child(4) .product-image {
+            background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+        }
+        .product-card:nth-child(5) .product-image {
+            background: linear-gradient(135deg, #E0F7FA, #B2EBF2);
+        }
+        .product-card:nth-child(6) .product-image {
+            background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+        }
+        .product-card:nth-child(7) .product-image {
+            background: linear-gradient(135deg, #FBE9E7, #FFCCBC);
+        }
+        .product-card:nth-child(8) .product-image {
+            background: linear-gradient(135deg, #E8EAF6, #C5CAE9);
+        }
+
+        .product-image-icon {
+            font-size: 4.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--green-ayur);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-tag.bestseller {
+            background: var(--saffron);
+        }
+
+        .product-tag.new {
+            background: var(--purple-light);
+        }
+
+        .product-rating {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .product-body {
+            padding: 20px;
+        }
+
+        .product-body h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 4px;
+        }
+
+        .product-body .hindi-name {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.8rem;
+            color: var(--saffron);
+            margin-bottom: 8px;
+        }
+
+        .product-body p {
+            font-size: 0.82rem;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+
+        .product-price .mrp {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+
+        .product-cart-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 2px solid var(--green-ayur);
+            background: transparent;
+            color: var(--green-ayur);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-cart-btn:hover {
+            background: var(--green-ayur);
+            color: white;
+        }
+
+        /* ===== BENEFITS BANNER ===== */
+        .benefits-banner {
+            background: linear-gradient(135deg, #1A0A00 0%, #3E2723 50%, #1A0A00 100%);
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: repeating-conic-gradient(var(--gold) 0% 25%, transparent 0% 50%);
+            background-size: 40px 40px;
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefit-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: var(--cream);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--saffron);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .testimonial-card:nth-child(1) .testimonial-avatar { background: var(--gradient-saffron); }
+        .testimonial-card:nth-child(2) .testimonial-avatar { background: var(--gradient-green); }
+        .testimonial-card:nth-child(3) .testimonial-avatar { background: linear-gradient(135deg, #6A1B9A, #AB47BC); }
+
+        .testimonial-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--brown);
+        }
+
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .testimonial-stars {
+            color: #FFB300;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        /* ===== DAILY WISDOM ===== */
+        .wisdom {
+            background: linear-gradient(135deg, #800020 0%, #B71C1C 50%, #800020 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wisdom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: repeating-conic-gradient(white 0% 25%, transparent 0% 50%);
+            background-size: 50px 50px;
+        }
+
+        .wisdom-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wisdom-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .wisdom-quote {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .wisdom-quote-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .wisdom-source {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+        }
+
+        .newsletter-form button {
+            padding: 16px 35px;
+            background: var(--gradient-saffron);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .contact-info > p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--orange-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 3px;
+        }
+
+        .contact-item-text p {
+            font-size: 0.88rem;
+            color: #666;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-link.youtube { background: #FF0000; }
+        .social-link.instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); }
+        .social-link.whatsapp { background: #25D366; }
+        .social-link.telegram { background: #0088CC; }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-form-wrapper h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--brown);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+            background: #FAFAFA;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.08);
+            background: white;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-saffron);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(180deg, #1A0A00 0%, #0D0500 100%);
+            padding: 80px 20px 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold-light);
+            transform: translateX(5px);
+        }
+
+        .footer-col ul li a::before {
+            content: '›';
+            font-size: 1.1rem;
+            color: var(--saffron);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold-light);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-saffron);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.7s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.7s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-us {
+            background: white;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .why-card {
+            padding: 35px 25px;
+            background: var(--cream);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .why-card:hover {
+            border-color: var(--saffron);
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .why-card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: var(--orange-glow);
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover .why-card-icon {
+            background: var(--gradient-saffron);
+            transform: scale(1.1);
+        }
+
+        .why-card:hover .why-card-icon span {
+            filter: grayscale(1) brightness(5);
+        }
+
+        .why-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100%;
+            background: rgba(26, 10, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            padding: 80px 30px 30px;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold-light);
+            padding-left: 10px;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: block; }
+
+            .hero-title { font-size: 3rem; }
+            .hero-title-hindi { font-size: 1.5rem; }
+
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .courses-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 70px 15px; }
+            .section-title { font-size: 2rem; }
+
+            .hero-title { font-size: 2.3rem; }
+            .hero-title-hindi { font-size: 1.2rem; }
+            .hero-sacred-line { font-size: 1rem; }
+            .hero-subtitle-en { font-size: 0.95rem; }
+            .hero-subtitle-hi { font-size: 0.88rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+
+            .courses-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .why-us-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+
+            .newsletter-form { flex-direction: column; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+
+            .about-float-card { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.8rem; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .benefit-number { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-mandala"></div>
+        <div class="loader-om">ॐ</div>
+        <div class="loader-text">Divya Chetna</div>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <div class="nav-logo-icon">ॐ</div>
+                <div class="nav-logo-text">
+                    <span class="hindi">दिव्य चेतना</span>
+                    <span class="english">DIVYA CHETNA</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#philosophy">Philosophy</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#products">Ayurvedic Shop</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#courses" class="nav-cta">Enroll Now</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home">🏠 Home</a>
+        <a href="#about">🕉️ About Us</a>
+        <a href="#philosophy">📖 Philosophy</a>
+        <a href="#courses">🎓 Courses</a>
+        <a href="#products">🌿 Ayurvedic Shop</a>
+        <a href="#testimonials">⭐ Reviews</a>
+        <a href="#contact">📞 Contact</a>
+        <a href="#courses" style="color: var(--gold-light); font-weight: 600;">✨ Enroll Now</a>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+
+        <div class="hero-content">
+            <div class="hero-om-symbol">ॐ</div>
+            <div class="hero-sacred-line">ॐ श्री क्षेमेश्वराय नमः</div>
+            <div class="hero-deity-name">Shri Kshemeshwar Mahadev</div>
+            <div class="hero-divider"></div>
+            <div class="hero-badge">✦ Spiritual Awakening & Ayurvedic Wellness ✦</div>
+            <h1 class="hero-title">Divya Chetna</h1>
+            <div class="hero-title-hindi">दिव्य चेतना</div>
+            <p class="hero-subtitle-en">
+                Welcome to <strong>'Divya Chetna'</strong>—your destination for Spiritual Awakening and Psychological Insights. We simplify teachings from <strong>Stoicism, Bhagavad Gita,</strong> and <strong>Modern Psychology</strong> for inner peace and mental clarity.
+            </p>
+            <p class="hero-subtitle-hi">
+                स्वागत है <strong>'दिव्य चेतना'</strong> में—आपका आध्यात्मिक और मानसिक जागृति का केंद्र। यहाँ हम प्राचीन दर्शन, मनोविज्ञान (Psychology), और स्टोइज़िज्म (Stoicism) के रहस्यों को साझा करते हैं। हमारा उद्देश्य आधुनिक तनाव के बीच आपको मानसिक शांति, आत्म-नियंत्रण और गहरी साधना (Meditation) का मार्ग दिखाना है।
+            </p>
+            <div class="hero-buttons">
+                <a href="#courses" class="btn-primary">🎓 Explore Courses</a>
+                <a href="#products" class="btn-secondary">🌿 Ayurvedic Products</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="section about" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-image-wrapper fade-in-left">
+                    <div class="about-image">
+                        <div class="about-image-content">
+                            <div class="mandala">☸</div>
+                            <div class="om-large">🙏</div>
+                            <p>सत्यं शिवं सुन्दरम्</p>
+                        </div>
+                    </div>
+                    <div class="about-float-card card-1">
+                        <div class="about-float-icon saffron">🕉️</div>
+                        <div class="about-float-text">
+                            <h4>Ancient Wisdom</h4>
+                            <p>5000+ Years of Knowledge</p>
+                        </div>
+                    </div>
+                    <div class="about-float-card card-2">
+                        <div class="about-float-icon green">🌿</div>
+                        <div class="about-float-text">
+                            <h4>100% Ayurvedic</h4>
+                            <p>Pure & Natural Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text fade-in-right">
+                    <div class="section-badge">About Us</div>
+                    <h3>Where Ancient Wisdom Meets <span class="highlight">Modern Healing</span></h3>
+                    <p>
+                        Divya Chetna (दिव्य चेतना) is a sacred space dedicated to the holistic well-being of mind, body, and spirit. Founded with the blessings of <strong>Shri Kshemeshwar Mahadev</strong>, we bridge the timeless wisdom of Vedic philosophy with contemporary psychological science.
+                    </p>
+                    <p>
+                        Our mission is to make the profound teachings of the <strong>Bhagavad Gita</strong>, the disciplined philosophy of <strong>Stoicism</strong>, the transformative power of <strong>Deep Meditation</strong>, and the evidence-based insights of <strong>Modern Psychology</strong> accessible to every seeker. Alongside, we offer authentic <strong>Ayurvedic products</strong> crafted from nature's purest ingredients.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <span class="about-feature-icon">📖</span>
+                            <span>Bhagavad Gita Wisdom</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">🏛️</span>
+                            <span>Stoic Philosophy</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">🧘</span>
+                            <span>Deep Meditation</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">🧠</span>
+                            <span>Modern Psychology</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">🌿</span>
+                            <span>Ayurvedic Products</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="about-feature-icon">💫</span>
+                            <span>Inner Peace & Clarity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PHILOSOPHY PILLARS ===== -->
+    <section class="section pillars" id="philosophy">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">Our Four Pillars</div>
+                <h2 class="section-title">Foundations of Divya Chetna</h2>
+                <div class="section-title-hindi">दिव्य चेतना के चार स्तंभ</div>
+                <p class="section-desc">
+                    Our teachings integrate four powerful streams of wisdom that together create a complete path to spiritual awakening and mental well-being.
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-card fade-in" style="transition-delay: 0.1s">
+                    <div class="pillar-icon">📖</div>
+                    <h3>Bhagavad Gita</h3>
+                    <div class="hindi-name">श्रीमद्भगवद्गीता</div>
+                    <p>Discover the eternal wisdom of Lord Krishna's teachings. Learn about Dharma, Karma Yoga, and the path to self-realization through the sacred verses of the Gita.</p>
+                </div>
+                <div class="pillar-card fade-in" style="transition-delay: 0.2s">
+                    <div class="pillar-icon">🏛️</div>
+                    <h3>Stoicism</h3>
+                    <div class="hindi-name">स्टोइक दर्शन</div>
+                    <p>Master the art of emotional resilience through Marcus Aurelius, Seneca & Epictetus. Build unshakable inner strength and learn to control what you can.</p>
+                </div>
+                <div class="pillar-card fade-in" style="transition-delay: 0.3s">
+                    <div class="pillar-icon">🧘</div>
+                    <h3>Deep Meditation</h3>
+                    <div class="hindi-name">गहन ध्यान साधना</div>
+                    <p>Experience profound states of consciousness through ancient meditation techniques. From mindfulness to transcendental practices for complete inner silence.</p>
+                </div>
+                <div class="pillar-card fade-in" style="transition-delay: 0.4s">
+                    <div class="pillar-icon">🧠</div>
+                    <h3>Modern Psychology</h3>
+                    <div class="hindi-name">आधुनिक मनोविज्ञान</div>
+                    <p>Evidence-based psychological tools including CBT, mindfulness therapy, and positive psychology for managing anxiety, stress, and building mental clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COURSES SECTION ===== -->
+    <section class="section courses" id="courses">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">Learn & Transform</div>
+                <h2 class="section-title">Our Transformative Courses</h2>
+                <div class="section-title-hindi">हमारे परिवर्तनकारी पाठ्यक्रम</div>
+                <p class="section-desc">
+                    Enroll in our carefully designed courses that blend ancient wisdom with modern science for complete personal transformation.
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card fade-in" style="transition-delay: 0.1s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">📖</div>
+                        <span class="course-badge">Bestseller</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Bhagavad Gita for Modern Life</h3>
+                        <div class="course-hindi">गीता का आधुनिक जीवन में उपयोग</div>
+                        <p>18 chapters decoded with practical applications for daily challenges. Learn Karma Yoga, Bhakti, and Jnana paths for modern seekers.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 36 Lessons</div>
+                            <div class="course-meta-item">⏱️ 24 Hours</div>
+                            <div class="course-price">₹2,499 <span class="original">₹5,999</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+                <!-- Course 2 -->
+                <div class="course-card fade-in" style="transition-delay: 0.2s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">🏛️</div>
+                        <span class="course-badge">Popular</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Stoic Philosophy Mastery</h3>
+                        <div class="course-hindi">स्टोइक दर्शन में महारत</div>
+                        <p>From Marcus Aurelius to Epictetus—learn practical Stoic techniques for emotional resilience, rational thinking, and living virtuously.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 28 Lessons</div>
+                            <div class="course-meta-item">⏱️ 18 Hours</div>
+                            <div class="course-price">₹1,999 <span class="original">₹4,499</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+                <!-- Course 3 -->
+                <div class="course-card fade-in" style="transition-delay: 0.3s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">🧘</div>
+                        <span class="course-badge">New</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Deep Meditation Intensive</h3>
+                        <div class="course-hindi">गहन ध्यान साधना कोर्स</div>
+                        <p>Master advanced meditation techniques—Vipassana, Yoga Nidra, Trataka, Chakra Meditation, and Transcendental Meditation practices.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 40 Sessions</div>
+                            <div class="course-meta-item">⏱️ 30 Hours</div>
+                            <div class="course-price">₹3,499 <span class="original">₹7,999</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+                <!-- Course 4 -->
+                <div class="course-card fade-in" style="transition-delay: 0.1s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">🧠</div>
+                        <span class="course-badge">Trending</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Psychology of Inner Peace</h3>
+                        <div class="course-hindi">मानसिक शांति का मनोविज्ञान</div>
+                        <p>CBT, Mindfulness-Based Stress Reduction, Positive Psychology & Emotional Intelligence—scientific tools for lasting mental wellness.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 32 Lessons</div>
+                            <div class="course-meta-item">⏱️ 20 Hours</div>
+                            <div class="course-price">₹2,799 <span class="original">₹5,499</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+                <!-- Course 5 -->
+                <div class="course-card fade-in" style="transition-delay: 0.2s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">🔥</div>
+                        <span class="course-badge">Premium</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Complete Spiritual Awakening</h3>
+                        <div class="course-hindi">सम्पूर्ण आध्यात्मिक जागृति</div>
+                        <p>Our flagship program combining all four pillars—Gita, Stoicism, Meditation & Psychology—into one transformative 90-day journey.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 90 Days</div>
+                            <div class="course-meta-item">⏱️ 60+ Hours</div>
+                            <div class="course-price">₹6,999 <span class="original">₹14,999</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+                <!-- Course 6 -->
+                <div class="course-card fade-in" style="transition-delay: 0.3s">
+                    <div class="course-image">
+                        <div class="course-image-pattern"></div>
+                        <div class="course-image-icon">🌿</div>
+                        <span class="course-badge">Free Preview</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>Ayurveda & Holistic Living</h3>
+                        <div class="course-hindi">आयुर्वेद और समग्र जीवनशैली</div>
+                        <p>Learn your Dosha type, Ayurvedic daily routines (Dinacharya), herbal remedies, Sattvic diet, and seasonal wellness practices.</p>
+                        <div class="course-meta">
+                            <div class="course-meta-item">📚 24 Lessons</div>
+                            <div class="course-meta-item">⏱️ 16 Hours</div>
+                            <div class="course-price">₹1,499 <span class="original">₹3,499</span></div>
+                        </div>
+                    </div>
+                    <a href="#" class="course-btn">Enroll Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AYURVEDIC PRODUCTS ===== -->
+    <section class="section products" id="products">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">🌿 Ayurvedic Store</div>
+                <h2 class="section-title">Pure Ayurvedic Products</h2>
+                <div class="section-title-hindi">शुद्ध आयुर्वेदिक उत्पाद</div>
+                <p class="section-desc">
+                    Handcrafted with ancient Ayurvedic formulations using 100% natural herbs. Restore balance to your body, mind, and spirit.
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🌿</div>
+                        <span class="product-tag bestseller">Bestseller</span>
+                        <div class="product-rating">⭐ 4.9 (2.3k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Ashwagandha Churna</h3>
+                        <div class="hindi-name">अश्वगंधा चूर्ण</div>
+                        <p>Premium organic Ashwagandha root powder for stress relief, energy & vitality. Adaptogenic herb for modern life.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹349 <span class="mrp">₹599</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🍯</div>
+                        <span class="product-tag">Ayurvedic</span>
+                        <div class="product-rating">⭐ 4.8 (1.8k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Chyawanprash</h3>
+                        <div class="hindi-name">च्यवनप्राश</div>
+                        <p>Traditional immunity booster with 48+ herbs including Amla, Giloy, and Saffron. Boosts Ojas and strengthens immunity.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹499 <span class="mrp">₹899</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🧴</div>
+                        <span class="product-tag new">New</span>
+                        <div class="product-rating">⭐ 4.7 (950)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Brahmi Hair Oil</h3>
+                        <div class="hindi-name">ब्राह्मी केश तेल</div>
+                        <p>Cooling Brahmi-infused hair oil with Bhringraj & Amla. Promotes hair growth, reduces stress and calms the mind.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹299 <span class="mrp">₹549</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🍵</div>
+                        <span class="product-tag bestseller">Bestseller</span>
+                        <div class="product-rating">⭐ 4.9 (3.1k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Tulsi Green Tea</h3>
+                        <div class="hindi-name">तुलसी ग्रीन टी</div>
+                        <p>Sacred Tulsi blended with premium green tea. Rich in antioxidants, boosts immunity, and promotes meditation clarity.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹249 <span class="mrp">₹449</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">💊</div>
+                        <span class="product-tag">Ayurvedic</span>
+                        <div class="product-rating">⭐ 4.8 (1.5k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Triphala Tablets</h3>
+                        <div class="hindi-name">त्रिफला वटी</div>
+                        <p>Classic Ayurvedic digestive formula with Haritaki, Bibhitaki & Amalaki. Detoxifies, rejuvenates, and balances all three Doshas.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹199 <span class="mrp">₹399</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🪷</div>
+                        <span class="product-tag new">New</span>
+                        <div class="product-rating">⭐ 4.6 (780)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Meditation Dhoop Set</h3>
+                        <div class="hindi-name">ध्यान धूप सेट</div>
+                        <p>Hand-rolled organic incense with Sandalwood, Guggul & Camphor. Creates a sacred atmosphere for deep meditation.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹179 <span class="mrp">₹349</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 7 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🫙</div>
+                        <span class="product-tag">Ayurvedic</span>
+                        <div class="product-rating">⭐ 4.7 (1.2k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Shankhpushpi Syrup</h3>
+                        <div class="hindi-name">शंखपुष्पी सिरप</div>
+                        <p>Brain tonic for enhanced memory, focus & concentration. Calms anxiety and improves cognitive function naturally.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹279 <span class="mrp">₹499</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 8 -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <div class="product-image-icon">🧘</div>
+                        <span class="product-tag bestseller">Bestseller</span>
+                        <div class="product-rating">⭐ 4.9 (2.7k)</div>
+                    </div>
+                    <div class="product-body">
+                        <h3>Stress Relief Kit</h3>
+                        <div class="hindi-name">तनाव मुक्ति किट</div>
+                        <p>Complete wellness kit with Ashwagandha, Brahmi capsules, Jatamansi oil & calming tea. Your daily peace ritual.</p>
+                        <div class="product-footer">
+                            <div class="product-price">₹999 <span class="mrp">₹1,999</span></div>
+                            <button class="product-cart-btn" title="Add to Cart">🛒</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS BANNER ===== -->
+    <div class="benefits-banner">
+        <div class="benefits-grid">
+            <div class="benefit-item fade-in">
+                <div class="benefit-number" data-target="10000">0+</div>
+                <div class="benefit-label">Students Transformed</div>
+            </div>
+            <div class="benefit-item fade-in">
+                <div class="benefit-number" data-target="50">0+</div>
+                <div class="benefit-label">Expert-Led Courses</div>
+            </div>
+            <div class="benefit-item fade-in">
+                <div class="benefit-number" data-target="100">0%</div>
+                <div class="benefit-label">Natural Ayurvedic</div>
+            </div>
+            <div class="benefit-item fade-in">
+                <div class="benefit-number" data-target="25">0+</div>
+                <div class="benefit-label">Countries Reached</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section why-us" id="why-us">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">Why Choose Us</div>
+                <h2 class="section-title">The Divya Chetna Difference</h2>
+                <div class="section-title-hindi">दिव्य चेतना क्यों चुनें?</div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="why-us-grid">
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>📜</span></div>
+                    <h3>Authentic Teachings</h3>
+                    <p>Direct from ancient scriptures and verified by scholars. Every teaching is rooted in authentic Vedic and philosophical traditions.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>🔬</span></div>
+                    <h3>Science-Backed</h3>
+                    <p>Our psychological methods are evidence-based and validated. We bridge spirituality with neuroscience and clinical research.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>🌍</span></div>
+                    <h3>Bilingual Content</h3>
+                    <p>All courses available in both Hindi and English with detailed explanations in simple, accessible language for everyone.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>🌿</span></div>
+                    <h3>Pure Ingredients</h3>
+                    <p>Every Ayurvedic product uses GMP-certified, 100% natural herbs sourced from organic farms across India.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>👨‍🏫</span></div>
+                    <h3>Expert Mentors</h3>
+                    <p>Learn from experienced Acharyas, certified psychologists, and seasoned meditation practitioners with decades of practice.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-icon"><span>🤝</span></div>
+                    <h3>Community Support</h3>
+                    <p>Join our vibrant community of 10,000+ seekers. Weekly satsangs, group meditations, and peer support for your journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">Testimonials</div>
+                <h2 class="section-title">What Our Community Says</h2>
+                <div class="section-title-hindi">हमारे साधकों के अनुभव</div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in" style="transition-delay: 0.1s">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The Bhagavad Gita course transformed my understanding of Karma. Combined with the Stoic philosophy lessons, I've developed an unshakable mindset. The Ashwagandha from their store is genuinely life-changing!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Arjun Sharma</h4>
+                            <p>Software Engineer, Bangalore</p>
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in" style="transition-delay: 0.2s">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">दिव्य चेतना के ध्यान कोर्स ने मेरी ज़िंदगी बदल दी। 6 महीने की साधना के बाद मेरी anxiety पूरी तरह ख़त्म हो गई। आयुर्वेदिक उत्पाद भी बेहतरीन quality के हैं।</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">P</div>
+                        <div class="testimonial-info">
+                            <h4>Priya Verma</h4>
+                            <p>Teacher, Varanasi</p>
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in" style="transition-delay: 0.3s">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">The psychology course combined with meditation practices gave me tools to handle my corporate stress. The Stress Relief Kit is my daily companion now. Truly holistic approach to wellness!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">R</div>
+                        <div class="testimonial-info">
+                            <h4>Rahul Mehta</h4>
+                            <p>Business Consultant, Mumbai</p>
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DAILY WISDOM ===== -->
+    <div class="wisdom">
+        <div class="wisdom-content fade-in">
+            <div class="wisdom-icon">📖</div>
+            <blockquote class="wisdom-quote">
+                "You have the right to work, but never to the fruit of work."
+            </blockquote>
+            <p class="wisdom-quote-hindi">
+                "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥"
+            </p>
+            <cite class="wisdom-source">— Bhagavad Gita, Chapter 2, Verse 47</cite>
+        </div>
+    </div>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter">
+        <div class="newsletter-container fade-in">
+            <div class="newsletter-icon">✉️</div>
+            <h2>Join Our Spiritual Newsletter</h2>
+            <p>Receive daily wisdom from Gita, Stoic quotes, meditation tips & exclusive Ayurvedic offers directly in your inbox.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('🙏 Namaste! You have been subscribed to Divya Chetna newsletter. Expect daily wisdom in your inbox!');">
+                <input type="email" placeholder="Enter your email address..." required>
+                <button type="submit">Subscribe 🙏</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="section contact" id="contact">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <div class="section-badge">Get in Touch</div>
+                <h2 class="section-title">Contact Divya Chetna</h2>
+                <div class="section-title-hindi">हमसे संपर्क करें</div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in-left">
+                    <h3>Let's Begin Your Journey</h3>
+                    <p>Whether you seek spiritual guidance, want to learn about our courses, or need authentic Ayurvedic products—we're here to help you on your path to inner peace.</p>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h4>Our Ashram</h4>
+                            <p>Shri Kshemeshwar Mahadev Mandir Marg,<br>Varanasi, Uttar Pradesh 221001</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-text">
+                            <h4>Call Us</h4>
+                            <p>+91 98765 43210<br>+91 87654 32109</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-item-text">
+                            <h4>Email</h4>
+                            <p>info@divyachetna.com<br>courses@divyachetna.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-text">
+                            <h4>Hours</h4>
+                            <p>Mon - Sat: 6:00 AM - 9:00 PM<br>Sunday: 6:00 AM - 12:00 PM (Satsang)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <a href="#" class="social-link youtube" title="YouTube">▶</a>
+                        <a href="#" class="social-link instagram" title="Instagram">📷</a>
+                        <a href="#" class="social-link whatsapp" title="WhatsApp">💬</a>
+                        <a href="#" class="social-link telegram" title="Telegram">✈</a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper fade-in-right">
+                    <h3>Send Us a Message</h3>
+                    <form onsubmit="event.preventDefault(); alert('🙏 Thank you for reaching out! We will get back to you within 24 hours. Om Shanti!');">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>I'm Interested In</label>
+                            <select>
+                                <option value="">Select an option...</option>
+                                <option value="courses">Courses & Teachings</option>
+                                <option value="products">Ayurvedic Products</option>
+                                <option value="meditation">Meditation Sessions</option>
+                                <option value="consultation">Personal Consultation</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Message *</label>
+                            <textarea placeholder="Share your thoughts, questions, or how we can help you..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message 🙏</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="nav-logo">
+                    <div class="nav-logo-icon">ॐ</div>
+                    <div class="nav-logo-text">
+                        <span class="hindi">दिव्य चेतना</span>
+                        <span class="english">DIVYA CHETNA</span>
+                    </div>
+                </a>
+                <p>Your sacred destination for spiritual awakening, Ayurvedic wellness, and psychological insights. Bridging ancient Vedic wisdom with modern science for inner peace and mental clarity.</p>
+                <p style="color: var(--gold-light); font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.95rem;">
+                    ॐ श्री क्षेमेश्वराय नमः 🙏
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="#">Bhagavad Gita</a></li>
+                    <li><a href="#">Stoic Philosophy</a></li>
+                    <li><a href="#">Deep Meditation</a></li>
+                    <li><a href="#">Modern Psychology</a></li>
+                    <li><a href="#">Spiritual Awakening</a></li>
+                    <li><a href="#">Ayurveda Course</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ayurvedic Shop</h4>
+                <ul>
+                    <li><a href="#">Ashwagandha</a></li>
+                    <li><a href="#">Chyawanprash</a></li>
+                    <li><a href="#">Brahmi Oil</a></li>
+                    <li><a href="#">Tulsi Tea</a></li>
+                    <li><a href="#">Triphala</a></li>
+                    <li><a href="#">Wellness Kits</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Teachers</a></li>
+                    <li><a href="#">Blog & Articles</a></li>
+                    <li><a href="#">Free Resources</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Divya Chetna (दिव्य चेतना). All rights reserved. Made with 🙏 & ❤️</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== LOADER =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // ===== PARTICLES =====
+        const particlesContainer = document.getElementById('heroParticles');
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.setProperty('--duration', (8 + Math.random() * 12) + 's');
+            particle.style.setProperty('--opacity', (0.2 + Math.random() * 0.5));
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.width = (2 + Math.random() * 4) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== MOBILE MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMobileMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // ===== ACTIVE NAV LINK =====
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== COUNTER ANIMATION =====
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.benefit-number');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const suffix = counter.textContent.includes('%') ? '%' : '+';
+                        let current = 0;
+                        const increment = target / 60;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            counter.textContent = Math.floor(current).toLocaleString() + suffix;
+                        }, 30);
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const benefitsBanner = document.querySelector('.benefits-banner');
+        if (benefitsBanner) {
+            counterObserver.observe(benefitsBanner);
+        }
+
+        // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== ADD TO CART ANIMATION =====
+        document.querySelectorAll('.product-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.textContent = '✓';
+                this.style.background = 'var(--green-ayur)';
+                this.style.color = 'white';
+                setTimeout(() => {
+                    this.textContent = '🛒';
+                    this.style.background = '';
+                    this.style.color = '';
+                }, 2000);
+            });
+        });
+    </script>
+
+</body>
+</html>
